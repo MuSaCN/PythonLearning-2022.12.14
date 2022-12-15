@@ -39,7 +39,7 @@ def login(url):
     print('login success:', now.strftime('%Y-%m-%d %H:%M:%S'))
 
 
-def buy(buytime):
+def buy(url, buytime):
     while True:
         now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
         # 对比时间，时间到的话就点击结算
@@ -61,7 +61,8 @@ def buy(buytime):
             except:
                 time.sleep(0.08)
         print(now)
-        time.sleep(0.05)
+        time.sleep(0.2)
+        driver.get(url)
 
 #  定位元素方式三种任何一个都可以使用过，实际使用自由组合。
 # （1）id定位 driver.find_element_by_id("id")
@@ -77,7 +78,7 @@ if __name__ == "__main__":
     url = "https://detail.tmall.com/item.htm?id=539845300741&skuId=5102026750936&spm=a1z0d.6639537/tb.1997196601.20.abbd7484jNSjgo"
     times = "2022-12-15 10:00:00"
     login(url)
-    buy(times)
+    buy(url, times)
 
 
 
