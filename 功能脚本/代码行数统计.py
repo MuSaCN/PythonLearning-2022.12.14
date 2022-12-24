@@ -12,7 +12,7 @@ class Counter:
     Blanks = 0
 
     def get_filelist(path, Filelist):
-        extendList = ['.mqh']
+        extendList = [".mqh", ".mq5", ".py"]
         newPath = path
 
         if os.path.isfile(path) and os.path.splitext(path)[1] in extendList:
@@ -145,7 +145,13 @@ class Counter:
 #%%
 if __name__ == "__main__":
     path = r"C:\Users\i2011\AppData\Roaming\MetaQuotes\Terminal\6E8A5B613BD795EE57C550F7EF90598D\MQL5\Include\My_Include"
+    # path = r"C:\Users\i2011\AppData\Roaming\MetaQuotes\Terminal\6E8A5B613BD795EE57C550F7EF90598D\MQL5\Indicators\My_Indicators"
+    # path = r"C:\Users\i2011\AppData\Roaming\MetaQuotes\Terminal\6E8A5B613BD795EE57C550F7EF90598D\MQL5\Experts\My_Experts"
+    # path = r"C:\Users\i2011\AppData\Roaming\MetaQuotes\Terminal\6E8A5B613BD795EE57C550F7EF90598D\MQL5\Scripts\My_Scripts"
 
+
+    # path = r"C:\Users\i2011\AppData\Local\Programs\Python\Python37\Lib\site-packages\MyPackage"
+    # path = r"C:\Users\i2011\PycharmProjects\PythonLearning"
 
     list = Counter.get_filelist(path, [])
     threads = []
