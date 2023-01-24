@@ -251,6 +251,12 @@ optcriterionaffix = myMT5run.get_optcriterion_affix(optcriterion=-1) # *** 完�
 optcriterion = 6  # *** 0 -- Balance max, 1 -- Profit Factor max, 2 -- Expected Payoff max, 3 -- Drawdown min, 4 -- Recovery Factor max, 5 -- Sharpe Ratio max, 6 -- Custom max, 7 -- Complex Criterion max
 
 
+#%% 清空下Common目录Files目录下已经输出过的csv文件
+commonfile_folder = __mypath__.get_mt5_terminal_path() + r"\Common\Files"
+commonfile = commonfile_folder + "\\" + expertfile.rsplit(".", 1)[0] + ".csv"
+myfile.remove_dir_or_file(commonfile)
+
+
 #%%
 timeaffix0 = myMT5run.change_timestr_format(starttime)
 timeaffix1 = myMT5run.change_timestr_format(endtime)
