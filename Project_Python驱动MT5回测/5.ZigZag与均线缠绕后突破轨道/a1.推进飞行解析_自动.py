@@ -111,6 +111,7 @@ bt_folder = contentfolder + r"\1.推进回测.{}.{}.{}".format(optcriterionaffix
 
 
 #%% ###### 主要函数 ######
+
 # ------通用分析套件参数------
 # 不需要每个参数都指定，用之前把MT5对应的EA参数默认化一下就行，需要修改的专门指定就行.
 # 使用时要修改，请标注 *******
@@ -120,7 +121,6 @@ def common_set():
 # ---(***)推进回测策略参数(***)---
 def strategy_set():
     pass
-
 
 # ---获取 timedf, matchlist, violent
 def get_timedf_matchlist_and_violent():
@@ -260,8 +260,8 @@ def get_EA_parainput(sortby, chooseby, resultlist, count=0.5, n=5):
     n = n
     resultlist = resultlist
     ### 第一次筛选 ###
-    totaldf = myMT5Analy.analysis_forward(timedf=timedf, matchlist=matchlist, sortby=sortby, count=count,
-                                          chooseby=chooseby, n=n, resultlist=resultlist,
+    totaldf = myMT5Analy.analysis_forward(timedf=timedf, matchlist=matchlist, sortby=sortby,
+                                          count=count, chooseby=chooseby, n=n, resultlist=resultlist,
                                           dropmaxchooseby=True, show=False)
     print("3: len(totaldf)=", len(totaldf))
 
@@ -318,12 +318,11 @@ for symbol in symbollist:
     # 推进分析参数输出目录
     forwardparapath = __mypath__.get_mt5_commonfile_path() + r"\推进分析参数.{}.{}".format(optcriterionaffix, __mypath__.basename(contentfolder))
 
-
-    ### ---获取 timedf, matchlist, violent
+    ## ---获取 timedf, matchlist, violent
     timedf, matchlist, violent = get_timedf_matchlist_and_violent()
     print("1: get_timedf_matchlist_and_violent()完成，准备解析 violent.")
 
-    #%% ###### 解析下violent ######
+    # %% ###### 解析下violent ######
     # ---获取[sortby, chooseby, resultlist]的模式收集
     modecollection = get_modecollection(violent=violent)
 
