@@ -468,7 +468,9 @@ for symbol in symbollist:
     endtime = pd.Timestamp(forward_endtime)
 
     # 报告目录
-    reportfolder = contentfolder + r"\推进分析.{}\推进.{}.{}.{}.{}.length={}.step={}".format(optcriterionaffix, symbol,myMT5Analy.timeframe_to_ini_affix(timeframe), timeaffix0,timeaffix1, length, step)
+    reportfolder = contentfolder + r"\推进分析.{}\推进.{}.{}.length={}.step={}". \
+        format(optcriterionaffix, symbol, myMT5run.timeframe_to_ini_affix(timeframe),
+               length, step)  # 以 "推进.EURUSD.M30.length=2Y.step=6M" 格式
     # 筛选汇总文件
     choosefilename = contentfolder + r"\推进分析.{}\筛选汇总.{}.{}.{}.{}.length={}.step={}.xlsx".format(optcriterionaffix, symbol, myMT5Analy.timeframe_to_ini_affix(timeframe),timeaffix0, timeaffix1, length, step)
     # 推进分析参数输出目录
