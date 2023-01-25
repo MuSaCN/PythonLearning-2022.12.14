@@ -152,9 +152,9 @@ def run(criterionindex=0):
         length = "%sY" % length_year
         step = "%sM" % step_months
 
-        reportfolder = contentfolder + r"\推进分析.{}\推进.{}.{}.{}.{}.length={}.step={}".\
+        reportfolder = contentfolder + r"\推进分析.{}\推进.{}.{}.length={}.step={}".\
             format(optcriterionaffix, symbol,myMT5run.timeframe_to_ini_affix(timeframe),
-                   timeaffix0, timeaffix1, length, step)  # 以 "推进.EURUSD.M30.2015-01-01.2022-07-01.length=2Y.step=6M" 格式
+                   length, step)  # 以 "推进.EURUSD.M30.length=2Y.step=6M" 格式
         expertname = experfolder + "\\" + expertfile
 
         for i, row in timedf.iterrows():
