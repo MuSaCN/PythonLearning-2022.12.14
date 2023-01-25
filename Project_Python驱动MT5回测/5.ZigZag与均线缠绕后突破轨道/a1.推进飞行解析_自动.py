@@ -319,7 +319,6 @@ for symbol in symbollist:
     forwardparapath = __mypath__.get_mt5_commonfile_path() + r"\推进分析参数.{}.{}".format(optcriterionaffix, __mypath__.basename(contentfolder))
 
 
-
     ### ---获取 timedf, matchlist, violent
     timedf, matchlist, violent = get_timedf_matchlist_and_violent()
     print("1: get_timedf_matchlist_and_violent()完成，准备解析 violent.")
