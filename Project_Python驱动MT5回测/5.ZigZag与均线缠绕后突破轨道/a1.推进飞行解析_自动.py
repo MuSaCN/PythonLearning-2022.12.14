@@ -103,7 +103,7 @@ optcriterionaffix = myMT5run.get_optcriterion_affix(optcriterion=0) # ******
 bt_experfolder = "My_Experts\\Strategy深度研究\\5.ZigZag与均线缠绕后突破轨道\\推进交易.2Y6M"
 bt_expertfile = "a1.推进交易.{}.{}.ex5".format("_Symbol", myMT5run.timeframe_to_ini_affix(timeframe))
 # (***)推进回测的时间起始(***)
-bt_starttime = "2015.07.01"  # 手动指定******
+bt_starttime = "2016.07.01"  # 手动指定******
 bt_endtime = "2023.01.01"  # 手动指定******
 # 推进回测保存的总目录
 bt_folder = contentfolder + r"\1.推进回测.{}.{}.{}".format(optcriterionaffix,
