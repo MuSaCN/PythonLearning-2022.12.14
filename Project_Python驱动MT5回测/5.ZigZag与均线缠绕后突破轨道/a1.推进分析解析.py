@@ -48,7 +48,7 @@ myMT5 = MyMql.MyClass_ConnectMT5(connect=False)  # Python链接MetaTrader5客户
 myMT5Pro = MyMql.MyClass_ConnectMT5Pro(connect=False)  # Python链接MT5高级类
 myMT5Indi = MyMql.MyClass_MT5Indicator()  # MT5指标Python版
 myMT5Report = MyMT5Report.MyClass_StratTestReport(AddFigure=False)  # MT5策略报告类
-myMT5Analy = MyMT5Analysis.MyClass_ForwardAnalysis() # MT5分析类
+myMT5Analy = MyMT5Analysis.MyClass_ForwardAnalysis()  # MT5分析类
 myMT5Lots_Fix = MyMql.MyClass_Lots_FixedLever(connect=False)  # 固定杠杆仓位类
 myMT5Lots_Dy = MyMql.MyClass_Lots_DyLever(connect=False)  # 浮动杠杆仓位类
 myMT5run = MyMql.MyClass_RunningMT5()  # Python运行MT5
@@ -68,26 +68,26 @@ myDefault.set_backend_default("Pycharm")  # Pycharm下需要plt.show()才显示�
 import warnings
 warnings.filterwarnings('ignore')
 
-expertfile = "a1.包络线振荡策略.ex5" # (***)基础EA(***)
-contentfolder = r"F:\BaiduNetdiskWorkspace\工作---MT5策略研究\6.包络线振荡策略" # 输出的总目录******
+expertfile = "a1.一次一单.ex5" # (***)基础EA(***)
+contentfolder = r"F:\BaiduNetdiskWorkspace\工作---MT5策略研究\8.ZigZag与均线缠绕后突破轨道" # 输出的总目录******
 # (***)根据基础EA源码的Input变量的顺序来整理下面参数名(***)
-ea_inputparalist = ["Inp_SigMode", "Inp_Ma_Period", "Inp_Ma_Method", "Inp_Applied_Price", "Inp_Deviation","Inp_SLMuiltple", "Inp_Filter0", "Inp_Filter1"]
+ea_inputparalist = ["Inp_NExtrama", "Inp_OsciAlpha", "Inp_NCrossLimit", "Inp_NBarCount"]
 
 
 # ["EURUSD", "GBPUSD", "AUDUSD", "NZDUSD", "USDJPY", "USDCAD", "USDCHF", "XAUUSD", "XAGUSD", "AUDJPY","CHFJPY","EURAUD","EURCAD", "EURCHF","EURGBP","EURJPY","GBPAUD","GBPCAD","GBPCHF","GBPJPY","NZDJPY"]
-symbol = "USDJPY" # ******
-timeframe = "TIMEFRAME_M30" # ******
+symbol = "AUDJPY" # ******
+timeframe = "TIMEFRAME_M15" # ******
 starttime = "2015.01.01" # 推进分析数据的开始时间******
-endtime = "2022.07.01" # 推进分析数据的结束时间(最后一个格子只做优化，不做推进)******
+endtime = "2023.01.01" # 推进分析数据的结束时间(最后一个格子只做优化，不做推进)******
 length_year = 2 # 1,2 # 样本总时间包括训练集和测试集，单位年(允许小数)******
 step_months = 6 # 3,6 # 推进步长，单位月(允许大于12)******
 
 # (***)优化词缀(***): -1 Complete, 0 Balance max, 6 Custom max, 7 Complex Criterion max.
-optcriterionaffix = myMT5run.get_optcriterion_affix(optcriterion=-1)
+optcriterionaffix = myMT5run.get_optcriterion_affix(optcriterion=0)
 
 
 
-#%%
+##%%
 length = "%sY"%length_year
 step = "%sM"%step_months # "6M","3M"
 
@@ -99,6 +99,7 @@ endtime = pd.Timestamp(endtime)
 
 # 报告目录
 reportfolder = contentfolder + r"\推进分析.{}\推进.{}.{}.length={}.step={}".format(optcriterionaffix, symbol,myMT5Analy.timeframe_to_ini_affix(timeframe),length,step)
+
 # 筛选汇总文件
 choosefilename = contentfolder + r"\推进分析.{}\筛选汇总.{}.{}.{}.{}.length={}.step={}.xlsx".format(optcriterionaffix, symbol,myMT5Analy.timeframe_to_ini_affix(timeframe),timeaffix0,timeaffix1,length,step)
 
@@ -163,7 +164,7 @@ for i in range(len(matchlist)):
 
 
 
-#%% ### 展示相关性 ###
+##%% ### 展示相关性 ###
 len(matchlist)
 # for i in range(len(matchlist)):  # i=10
 #     trainmatch = matchlist[i][0].copy()
@@ -176,7 +177,7 @@ totalcorr = myMT5Analy.traintest_corr_score(matchlist=matchlist, corrlimit = [0.
 # totalcorr在SciView中研究
 
 
-#%% ### 暴力测试下怎么筛选结果较好(循环比多线程好，多进程不方便) ###
+##%% ### 暴力测试下怎么筛选结果较好(循环比多线程好，多进程不方便) ###
 ### 第一次筛选
 if __mypath__.path_exists(choosefilename):
     # violent1 = violent # 用于研究超参数
@@ -219,10 +220,11 @@ else:
 # "最大的连亏($)" "(int)最大的连亏序列数" "平均连胜序列" "平均连亏序列" "获利交易中的最大值"
 # "亏损交易中的最大值"
 
+
 # ---训练集根据sortby降序排序后，从中选择count个行，再根据chooseby选择前n个最大值，再根据resultby表示结果.
 sortby = "(int)最长亏损序列" # "Kelly占用仓位杠杆" "myCriterion" "盈亏比" "平均盈利" "盈利总和" "盈利交易数量"
 count = 0.5  # 0.5一半，-1全部。注意有时候遗传算法导致结果太少，所以用-1更好
-chooseby = "Kelly占用仓位杠杆" # "TB"
+chooseby = "SQN_MT5_No" # "TB"
 n = 5
 resultlist=["TB", "净利润"]
 
@@ -231,7 +233,7 @@ totaldf = myMT5Analy.analysis_forward(timedf=timedf, matchlist=matchlist, sortby
 len(totaldf)
 
 
-#%% ### 二次筛选：根据某种方法选出一个占优的结果 ###
+##%% ### 二次筛选：根据某种方法选出一个占优的结果 ###
 group = totaldf.groupby(by="tag", axis=0, as_index=False) # tag为各个分组的标签
 # mypd.groupby_print(group)
 

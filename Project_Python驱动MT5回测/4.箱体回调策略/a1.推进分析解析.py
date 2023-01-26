@@ -99,7 +99,7 @@ starttime = pd.Timestamp(starttime)
 endtime = pd.Timestamp(endtime)
 
 # 报告目录
-reportfolder = contentfolder + r"\推进分析.{}\推进.{}.{}.{}.{}.length={}.step={}".format(optcriterionaffix, symbol,myMT5Analy.timeframe_to_ini_affix(timeframe),timeaffix0,timeaffix1,length,step)
+reportfolder = contentfolder + r"\推进分析.{}\推进.{}.{}.length={}.step={}".format(optcriterionaffix, symbol,myMT5Analy.timeframe_to_ini_affix(timeframe),length,step)
 # 筛选汇总文件
 choosefilename = contentfolder + r"\推进分析.{}\筛选汇总.{}.{}.{}.{}.length={}.step={}.xlsx".format(optcriterionaffix, symbol,myMT5Analy.timeframe_to_ini_affix(timeframe),timeaffix0,timeaffix1,length,step)
 
