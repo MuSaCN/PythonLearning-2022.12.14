@@ -63,11 +63,10 @@ myDefault.set_backend_default("Pycharm")  # Pycharm下需要plt.show()才显示�
 
 # %%
 '''
-这部分专门测试下各个品种推进交易的走势情况。
+这部分专门测试下各个品种推进交易的走势情况。有时候便于 QuantAnalyzer4 分析组合。
 前提：需要在MT5上建立好：a1.推进交易.EURUSD.M15.ex5 等品种的ex5文件。
       前面的推进分析已经做完，推进参数已经放到common文件夹。ex5文件已经生成好。
 '''
-
 
 
 # %%
