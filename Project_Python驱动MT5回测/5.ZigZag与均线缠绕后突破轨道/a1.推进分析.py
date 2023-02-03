@@ -116,8 +116,6 @@ timeframe = "TIMEFRAME_M15"  # ************
 forwardmode = 4  # *** 向前检测 (0 "No", 1 "1/2", 2 "1/3", 3 "1/4", 4 "Custom")
 model = 1  # *** 0 "每笔分时", 1 "1 分钟 OHLC", 2 "仅开盘价", 3 "数学计算", 4 "每个点基于实时点"
 optimization = 2  # *** 0 禁用优化, 1 "慢速完整算法", 2 "快速遗传算法", 3 "所有市场观察里选择的品种"
-# optcriterionaffix = myMT5run.get_optcriterion_affix(optcriterion=-1) # *** 完全优化(词缀无optcriterion)
-# optcriterion = 6  # *** 0 -- Balance max, 1 -- Profit Factor max, 2 -- Expected Payoff max, 3 -- Drawdown min, 4 -- Recovery Factor max, 5 -- Sharpe Ratio max, 6 -- Custom max, 7 -- Complex Criterion max
 
 
 #%% 清空下Common目录Files目录下已经输出过的csv文件

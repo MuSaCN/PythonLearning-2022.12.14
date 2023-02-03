@@ -78,7 +78,7 @@ ea_inputparalist = ["Inp_SigMode", "Inp_Ma_Period", "Inp_Ma_Method", "Inp_Applie
 symbol = "USDJPY" # ******
 timeframe = "TIMEFRAME_M30" # ******
 starttime = "2015.01.01" # 推进分析数据的开始时间******
-endtime = "2022.07.01" # 推进分析数据的结束时间(最后一个格子只做优化，不做推进)******
+endtime = "2023.01.01" # 推进分析数据的结束时间(最后一个格子只做优化，不做推进)******
 length_year = 2 # 1,2 # 样本总时间包括训练集和测试集，单位年(允许小数)******
 step_months = 6 # 3,6 # 推进步长，单位月(允许大于12)******
 
@@ -87,7 +87,7 @@ optcriterionaffix = myMT5run.get_optcriterion_affix(optcriterion=-1)
 
 
 
-#%%
+##%%
 length = "%sY"%length_year
 step = "%sM"%step_months # "6M","3M"
 
@@ -176,7 +176,7 @@ totalcorr = myMT5Analy.traintest_corr_score(matchlist=matchlist, corrlimit = [0.
 # totalcorr在SciView中研究
 
 
-#%% ### 暴力测试下怎么筛选结果较好(循环比多线程好，多进程不方便) ###
+##%% ### 暴力测试下怎么筛选结果较好(循环比多线程好，多进程不方便) ###
 ### 第一次筛选
 if __mypath__.path_exists(choosefilename):
     # violent1 = violent # 用于研究超参数
@@ -231,7 +231,7 @@ totaldf = myMT5Analy.analysis_forward(timedf=timedf, matchlist=matchlist, sortby
 len(totaldf)
 
 
-#%% ### 二次筛选：根据某种方法选出一个占优的结果 ###
+##%% ### 二次筛选：根据某种方法选出一个占优的结果 ###
 group = totaldf.groupby(by="tag", axis=0, as_index=False) # tag为各个分组的标签
 # mypd.groupby_print(group)
 

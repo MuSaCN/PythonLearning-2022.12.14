@@ -62,13 +62,6 @@ myDefault.set_backend_default("Pycharm")  # Pycharm下需要plt.show()才显示�
 # warnings.filterwarnings('ignore')
 
 
-# ------------------------------------------------------------
-# Jupyter Notebook 控制台显示必须加上：%matplotlib inline ，弹出窗显示必须加上：%matplotlib auto
-# %matplotlib inline
-# import warnings
-# warnings.filterwarnings('ignore')
-
-
 # %%
 ''' # 输出内容保存到"工作---MT5策略研究"目录，以及MT5的Common目录。 '''
 import warnings

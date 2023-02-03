@@ -79,7 +79,7 @@ ea_inputparalist = ["MaxBoxPeriod", "OsciBoxPeriod", "K_TrendBuyU", "K_TrendBuyD
 symbol = "XAUUSD" # ******
 timeframe = "TIMEFRAME_M15" # ******
 starttime = "2015.01.01" # 推进分析数据的开始时间******
-endtime = "2022.07.01" # 推进分析数据的结束时间(最后一个格子只做优化，不做推进)******
+endtime = "2023.07.01" # 推进分析数据的结束时间(最后一个格子只做优化，不做推进)******
 length_year = 2 # 1,2 # 样本总时间包括训练集和测试集，单位年(允许小数)******
 step_months = 6 # 3,6 # 推进步长，单位月(允许大于12)******
 
@@ -100,6 +100,7 @@ endtime = pd.Timestamp(endtime)
 
 # 报告目录
 reportfolder = contentfolder + r"\推进分析.{}\推进.{}.{}.length={}.step={}".format(optcriterionaffix, symbol,myMT5Analy.timeframe_to_ini_affix(timeframe),length,step)
+
 # 筛选汇总文件
 choosefilename = contentfolder + r"\推进分析.{}\筛选汇总.{}.{}.{}.{}.length={}.step={}.xlsx".format(optcriterionaffix, symbol,myMT5Analy.timeframe_to_ini_affix(timeframe),timeaffix0,timeaffix1,length,step)
 
