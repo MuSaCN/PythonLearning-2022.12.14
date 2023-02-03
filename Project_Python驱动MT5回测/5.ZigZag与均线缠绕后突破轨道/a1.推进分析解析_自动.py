@@ -76,7 +76,7 @@ ea_inputparalist = ["Inp_NExtrama", "Inp_OsciAlpha", "Inp_NCrossLimit", "Inp_NBa
 
 
 symbollist = ["EURUSD", "GBPUSD", "AUDUSD", "NZDUSD", "USDJPY", "USDCAD", "USDCHF", "XAUUSD", "XAGUSD", "AUDJPY","CHFJPY","EURAUD","EURCAD","EURCHF","EURGBP","EURJPY","GBPAUD","GBPCAD","GBPCHF","GBPJPY","NZDJPY"] # 策略的品种列表******
-# symbollist = ["EURJPY"]
+symbollist = ["USDCAD","AUDJPY","CHFJPY","EURAUD","EURCAD","EURCHF","EURGBP","EURJPY","GBPAUD","GBPCAD","GBPCHF","GBPJPY","NZDJPY"]
 
 timeframe = "TIMEFRAME_M15" # 策略的时间框******
 
