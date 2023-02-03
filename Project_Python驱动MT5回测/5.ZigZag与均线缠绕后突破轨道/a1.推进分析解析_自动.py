@@ -290,7 +290,7 @@ def get_EA_parainput(sortby, chooseby, resultlist, count=0.5, n=5):
 
 #%%
 for symbol in symbollist:
-    # symbol = "EURUSD"
+    # symbol = "CHFJPY"
     print("1: symbol=",symbol)
     if symbol in []:
         continue
@@ -321,6 +321,7 @@ for symbol in symbollist:
 
     # ---每个模式都进行推进回测
     for sortby, chooseby, resultlist in modecollection:
+
         print("3: 当前模式的参数为：sortby={}, chooseby={}, resultlist={}".format(sortby,chooseby,resultlist))
 
         #%% ### 生成EA的参数 ###
