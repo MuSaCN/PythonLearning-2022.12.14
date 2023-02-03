@@ -76,7 +76,7 @@ ea_inputparalist = ["Inp_NExtrama", "Inp_OsciAlpha", "Inp_NCrossLimit", "Inp_NBa
 
 
 symbollist = ["EURUSD", "GBPUSD", "AUDUSD", "NZDUSD", "USDJPY", "USDCAD", "USDCHF", "XAUUSD", "XAGUSD", "AUDJPY","CHFJPY","EURAUD","EURCAD","EURCHF","EURGBP","EURJPY","GBPAUD","GBPCAD","GBPCHF","GBPJPY","NZDJPY"] # 策略的品种列表******
-symbollist = ["USDCAD","AUDJPY","CHFJPY","EURAUD","EURCAD","EURCHF","EURGBP","EURJPY","GBPAUD","GBPCAD","GBPCHF","GBPJPY","NZDJPY"]
+symbollist = ["AUDJPY","CHFJPY","EURAUD","EURCAD","EURCHF","EURGBP","EURJPY","GBPAUD","GBPCAD","GBPCHF","GBPJPY","NZDJPY"]
 
 timeframe = "TIMEFRAME_M15" # 策略的时间框******
 
@@ -290,7 +290,7 @@ def get_EA_parainput(sortby, chooseby, resultlist, count=0.5, n=5):
 
 #%%
 for symbol in symbollist:
-    # symbol = "CHFJPY"
+    # symbol = "AUDJPY"
     print("1: symbol=",symbol)
     if symbol in []:
         continue
@@ -321,7 +321,7 @@ for symbol in symbollist:
 
     # ---每个模式都进行推进回测
     for sortby, chooseby, resultlist in modecollection:
-
+        # break
         print("3: 当前模式的参数为：sortby={}, chooseby={}, resultlist={}".format(sortby,chooseby,resultlist))
 
         #%% ### 生成EA的参数 ###
