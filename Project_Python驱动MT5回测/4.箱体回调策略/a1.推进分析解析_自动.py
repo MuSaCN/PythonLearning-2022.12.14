@@ -88,7 +88,7 @@ symbollist = ["EURUSD", "GBPUSD", "AUDUSD", "NZDUSD", "USDJPY", "USDCAD", "USDCH
 
 timeframe = "TIMEFRAME_M15" # 策略的时间框******
 
-
+# (******)MT5上的推进交易EA读取文档也要修改(******)，时间要调整为forward_starttime,forward_endtime
 # (***)推进分析的相关参数(***)
 forward_starttime = "2015.01.01" # 推进分析数据的开始时间******
 forward_endtime = "2023.07.01" # 推进分析数据的结束时间(最后一个格子只做优化，不做推进)******

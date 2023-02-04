@@ -77,8 +77,10 @@ ea_inputparalist = ["Inp_SigMode", "Inp_Ma_Period", "Inp_Ma_Method", "Inp_Applie
 
 symbollist = ["EURUSD", "GBPUSD", "AUDUSD", "NZDUSD", "USDJPY", "USDCAD", "USDCHF", "XAUUSD", "XAGUSD", "AUDJPY","CHFJPY","EURAUD","EURCAD","EURCHF","EURGBP","EURJPY","GBPAUD","GBPCAD","GBPCHF","GBPJPY","NZDJPY"] # 策略的品种列表******
 timeframe = "TIMEFRAME_M30" # 策略的时间框******
+# symbollist = []
 
 
+# (******)MT5上的推进交易EA读取文档也要修改(******)，时间要调整为forward_starttime,forward_endtime
 # (***)推进分析的相关参数(***)
 forward_starttime = "2015.01.01" # 推进分析数据的开始时间******
 forward_endtime = "2023.01.01" # 推进分析数据的结束时间(最后一个格子只做优化，不做推进)******
@@ -287,7 +289,7 @@ def get_EA_parainput(sortby, chooseby, resultlist, count=0.5, n=5):
 
 #%%
 for symbol in symbollist:
-    # symbol = "EURUSD"
+    # symbol = "XAUUSD"
     print("1: symbol=",symbol)
     if symbol in []:
         continue
@@ -318,6 +320,7 @@ for symbol in symbollist:
 
     # ---每个模式都进行推进回测
     for sortby, chooseby, resultlist in modecollection:
+        break
         print("3: 当前模式的参数为：sortby={}, chooseby={}, resultlist={}".format(sortby,chooseby,resultlist))
         #%% ### 生成EA的参数 ###
         get_EA_parainput(sortby, chooseby, resultlist, count=0.5, n=5)
