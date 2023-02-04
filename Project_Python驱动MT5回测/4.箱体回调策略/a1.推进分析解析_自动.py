@@ -316,7 +316,7 @@ for symbol in symbollist:
     # 筛选汇总文件
     choosefilename = contentfolder + r"\推进分析.{}\筛选汇总.{}.{}.{}.{}.length={}.step={}.xlsx".format(optcriterionaffix, symbol, myMT5Analy.timeframe_to_ini_affix(timeframe),timeaffix0, timeaffix1, length, step)
     # 推进分析参数输出目录
-    forwardparapath = __mypath__.get_mt5_commonfile_path() + r"\推进分析参数.{}.{}".format(optcriterionaffix, __mypath__.basename(contentfolder))
+    forwardparapath = __mypath__.get_mt5_commonfile_path() + r"\推进分析参数.{}.{}.{}.{}".format(optcriterionaffix, __mypath__.basename(contentfolder),timeaffix0,timeaffix1)
 
     ### ---获取 timedf, matchlist, violent
     timedf, matchlist, violent = get_timedf_matchlist_and_violent()

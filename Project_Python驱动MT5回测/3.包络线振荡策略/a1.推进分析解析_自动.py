@@ -121,9 +121,9 @@ def get_timedf_matchlist_and_violent():
                                            length_year=length_year)
     # 保存推进时间
     myfile.makedirs(forwardparapath, True)
-    timedf.to_csv(forwardparapath + "\\推进时间.{}.{}.{}.{}.length={}.step={}.csv".
+    timedf.to_csv(forwardparapath + "\\推进时间.{}.{}.length={}.step={}.csv".
                   format(symbol,myMT5Analy.timeframe_to_ini_affix(timeframe),
-                         timeaffix0,timeaffix1, length, step),sep=",")  # 逗号的csv可直接被excel解析。
+                         length, step),sep=",")  # 逗号的csv可直接被excel解析。
     # ---批量读取推进优化的报告(csv比xlsx速度快)，保存到matchlist中 [[0,1],[0,1]]--- 0 trainmatch, 1 testmatch.
     matchlist = []  # [[0,1]]
     for i, row in timedf.iterrows():
@@ -252,9 +252,7 @@ def get_EA_parainput(sortby, chooseby, resultlist, count=0.5, n=5):
     n = n
     resultlist = resultlist
     ### 第一次筛选 ###
-    totaldf = myMT5Analy.analysis_forward(timedf=timedf, matchlist=matchlist, sortby=sortby, count=count,
-                                          chooseby=chooseby, n=n, resultlist=resultlist,
-                                          dropmaxchooseby=True, show=False)
+    totaldf = myMT5Analy.analysis_forward(timedf=timedf, matchlist=matchlist, sortby=sortby, count=count, chooseby=chooseby, n=n, resultlist=resultlist, dropmaxchooseby=True, show=False)
     print("3: len(totaldf)=", len(totaldf))
 
     ### 第二次筛选：根据某种方法选出一个占优的结果 ###
@@ -279,12 +277,12 @@ def get_EA_parainput(sortby, chooseby, resultlist, count=0.5, n=5):
     parainput.drop(labels="Pass", axis=1, inplace=True)
     parainput.sort_values(by="tag", inplace=True, ignore_index=True)
     parainput.set_index(keys="tag", drop=True, inplace=True)
-    parainput.to_csv(forwardparapath + "\\推进参数.{}.{}.{}.{}.length={}.step={}.csv".
-                     format(symbol,myMT5Analy.timeframe_to_ini_affix(timeframe), timeaffix0,
-                            timeaffix1, length, step),sep=",")  # 逗号的csv可直接被excel解析。
-    print("3: 已保存到", forwardparapath + "\\推进参数.{}.{}.{}.{}.length={}.step={}.csv".
-          format(symbol,myMT5Analy.timeframe_to_ini_affix(timeframe), timeaffix0,
-                 timeaffix1, length, step))
+    parainput.to_csv(forwardparapath + "\\推进参数.{}.{}.length={}.step={}.csv".
+                     format(symbol,myMT5Analy.timeframe_to_ini_affix(timeframe),
+                            length, step),sep=",")  # 逗号的csv可直接被excel解析。
+    print("3: 已保存到", forwardparapath + "\\推进参数.{}.{}.length={}.step={}.csv".
+          format(symbol,myMT5Analy.timeframe_to_ini_affix(timeframe),
+                 length, step))
 
 
 #%%
@@ -308,7 +306,7 @@ for symbol in symbollist:
     # 筛选汇总文件
     choosefilename = contentfolder + r"\推进分析.{}\筛选汇总.{}.{}.{}.{}.length={}.step={}.xlsx".format(optcriterionaffix, symbol, myMT5Analy.timeframe_to_ini_affix(timeframe),timeaffix0, timeaffix1, length, step)
     # 推进分析参数输出目录
-    forwardparapath = __mypath__.get_mt5_commonfile_path() + r"\推进分析参数.{}.{}".format(optcriterionaffix, __mypath__.basename(contentfolder))
+    forwardparapath = __mypath__.get_mt5_commonfile_path() + r"\推进分析参数.{}.{}.{}.{}".format(optcriterionaffix, __mypath__.basename(contentfolder),timeaffix0,timeaffix1)
 
     ### ---获取 timedf, matchlist, violent
     timedf, matchlist, violent = get_timedf_matchlist_and_violent()
@@ -320,7 +318,7 @@ for symbol in symbollist:
 
     # ---每个模式都进行推进回测
     for sortby, chooseby, resultlist in modecollection:
-        break
+        # break
         print("3: 当前模式的参数为：sortby={}, chooseby={}, resultlist={}".format(sortby,chooseby,resultlist))
         #%% ### 生成EA的参数 ###
         get_EA_parainput(sortby, chooseby, resultlist, count=0.5, n=5)
