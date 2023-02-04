@@ -114,7 +114,7 @@ def strategy_set():
 
 #%%
 for symbol in symbollist:
-    # ex5的名称******，有时候要修改
+    # ex5的名称******，要修改
     bt_expertfile = "a1.推进交易.{}.{}.ex5".format(symbol, myMT5run.timeframe_to_ini_affix(timeframe))
 
     ###### 通常下面不用修改 ######

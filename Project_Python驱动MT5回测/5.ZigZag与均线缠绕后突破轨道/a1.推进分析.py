@@ -78,6 +78,8 @@ plt.show()
 
 
 #%% ###### 策略参数 ######
+from MyPackage.MyProjects.MT5推进分析.ForwardOpt import MyClass_ForwardOpt, myMT5run
+FwdOpt = MyClass_ForwardOpt()
 
 # ====== 策略参数 ======
 # ------通用分析套件参数------
@@ -94,119 +96,36 @@ def strategy_set():
     myMT5run.input_set("Inp_NBarCount", "40||40||2||80||Y") # 计算N个bar内交叉的数量。
 
 
-
-
 #%% ###### 策略优化 ######
 
-experfolder = "My_Experts\\Strategy深度研究\\5.ZigZag与均线缠绕后突破轨道"  # (***)基础EA所在的目录(***)
-expertfile = "a1.一次一单.ex5"  # (***)基础EA(***)
-contentfolder = r"F:\BaiduNetdiskWorkspace\工作---MT5策略研究\8.ZigZag与均线缠绕后突破轨道" # 输出的总目录******
+FwdOpt.experfolder = "My_Experts\\Strategy深度研究\\5.ZigZag与均线缠绕后突破轨道"  # (***)基础EA所在的目录(***)
+FwdOpt.expertfile = "a1.一次一单.ex5"  # (***)基础EA(***)
+FwdOpt.contentfolder = r"F:\BaiduNetdiskWorkspace\工作---MT5策略研究\8.ZigZag与均线缠绕后突破轨道" # 输出的总目录******
 
 # 推进测试的起止时间
-starttime = "2015.01.01" # ************
-endtime = "2023.01.01" # ************
-step_months = 6 # 6, 3 # 推进步长，单位月 # ************
-length_year = 2 # 2, 1 # 样本总时间包括训练集和测试集 # ************
+FwdOpt.starttime = "2015.01.01" # ************
+FwdOpt.endtime = "2023.01.01" # ************
+FwdOpt.step_months = 6 # 6, 3 # 推进步长，单位月 # ************
+FwdOpt.length_year = 2 # 2, 1 # 样本总时间包括训练集和测试集 # ************
 
-symbollist = ["EURUSD", "GBPUSD", "AUDUSD", "NZDUSD", "USDJPY", "USDCAD", "USDCHF", "XAUUSD", "XAGUSD", "AUDJPY","CHFJPY","EURAUD","EURCAD","EURCHF","EURGBP","EURJPY","GBPAUD","GBPCAD","GBPCHF","GBPJPY","NZDJPY"] # *********
-# symbollist = ["EURUSD"]
+FwdOpt.symbollist = ["EURUSD", "GBPUSD", "AUDUSD", "NZDUSD", "USDJPY", "USDCAD", "USDCHF", "XAUUSD", "XAGUSD", "AUDJPY","CHFJPY","EURAUD","EURCAD","EURCHF","EURGBP","EURJPY","GBPAUD","GBPCAD","GBPCHF","GBPJPY","NZDJPY"] # *********
+# FwdOpt.symbollist = ["EURUSD"]
 
-timeframe = "TIMEFRAME_M15"  # ************
+FwdOpt.timeframe = "TIMEFRAME_M15"  # ************
 
-forwardmode = 4  # *** 向前检测 (0 "No", 1 "1/2", 2 "1/3", 3 "1/4", 4 "Custom")
-model = 1  # *** 0 "每笔分时", 1 "1 分钟 OHLC", 2 "仅开盘价", 3 "数学计算", 4 "每个点基于实时点"
-optimization = 2  # *** 0 禁用优化, 1 "慢速完整算法", 2 "快速遗传算法", 3 "所有市场观察里选择的品种"
-
-
-#%% 清空下Common目录Files目录下已经输出过的csv文件
-commonfile_folder = __mypath__.get_mt5_terminal_path() + r"\Common\Files"
-commonfile = commonfile_folder + "\\" + expertfile.rsplit(".", 1)[0] + ".csv"
-myfile.remove_dir_or_file(commonfile)
-
+FwdOpt.forwardmode = 4  # *** 向前检测 (0 "No", 1 "1/2", 2 "1/3", 3 "1/4", 4 "Custom")
+FwdOpt.model = 1  # *** 0 "每笔分时", 1 "1 分钟 OHLC", 2 "仅开盘价", 3 "数学计算", 4 "每个点基于实时点"
+FwdOpt.optimization = 2  # *** 0 禁用优化, 1 "慢速完整算法", 2 "快速遗传算法", 3 "所有市场观察里选择的品种"
 
 
 #%%
-timeaffix0 = myMT5run.change_timestr_format(starttime)
-timeaffix1 = myMT5run.change_timestr_format(endtime)
-starttime = pd.Timestamp(starttime)
-endtime = pd.Timestamp(endtime)
+FwdOpt.prepare(common_set, strategy_set)
 
-timedf = myMT5run.get_everystep_time(starttime, endtime, step_months=step_months, length_year=length_year)
-
-
-#%%
 #---测试下哪个优化标准更能找到好策略
 # -1 -- Complete, 0 -- Balance max, 1 -- Profit Factor max, 2 -- Expected Payoff max, 3 -- Drawdown min, 4 -- Recovery Factor max, 5 -- Sharpe Ratio max, 6 -- Custom max, 7 -- Complex Criterion max.
-def run(criterionindex=0):
-    optcriterionaffix = myMT5run.get_optcriterion_affix(optcriterion=criterionindex)  # ***
-    optcriterion = criterionindex # *** 0 Balance max, 1 Profit Factor max, 2 Expected Payoff max, 3 Drawdown min, 4 Recovery Factor max, 5 Sharpe Ratio max, 6 Custom max, 7 Complex Criterion max
-
-
-    # ---
-    for symbol in symbollist:
-        if symbol in []:  # symbol = "EURUSD" "GBPUSD"
-            continue
-
-        length = "%sY" % length_year
-        step = "%sM" % step_months
-
-        reportfolder = contentfolder + r"\推进分析.{}\推进.{}.{}.length={}.step={}".\
-            format(optcriterionaffix, symbol,myMT5run.timeframe_to_ini_affix(timeframe),
-                   length, step)  # 以 "推进.EURUSD.M30.length=2Y.step=6M" 格式
-        expertname = experfolder + "\\" + expertfile
-
-        for i, row in timedf.iterrows():
-            # 时间参数必须转成"%Y.%m.%d"字符串
-            fromdate = row["from"]
-            forwarddate = row["forward"]
-            todate = row["to"]
-            print("======开始测试：fromdate={}, forwarddate={}, todate={}".format(fromdate, forwarddate, todate))
-
-            # ---最后一步要调整下t1和t2
-            islast = pd.Timestamp(forwarddate) == pd.Timestamp(endtime)
-            tf_affix = myMT5run.timeframe_to_ini_affix(timeframe)
-            t0 = myMT5run.change_timestr_format(fromdate)
-            t1 = myMT5run.change_timestr_format(forwarddate) if islast is False else None
-            t2 = myMT5run.change_timestr_format(todate) if islast is False else myMT5run.change_timestr_format(forwarddate)
-
-            # ---xml格式优化报告的目录
-            reportfile = reportfolder + "\\{}.{}.{}.{}.{}.{}.Crit={}.xml".format(
-                expertfile.rsplit(sep=".", maxsplit=1)[0], symbol, tf_affix, t0, t1, t2, optcriterion)
-            print("reportfile=", reportfile)
-
-            # 如果t1是None表示不是向前分析
-            iforwardmode = 0 if t1 is None else forwardmode # 向前检测 (0 "No", 1 "1/2", 2 "1/3", 3 "1/4", 4 "Custom")
-            todate = forwarddate if t1 is None else todate
-            print("t0={} t1={} t2={}".format(t0, t1, t2))
-            print("fromdate={} forwarddate={} todate={}".format(fromdate, forwarddate, todate))
-            print("forwardmode={} ".format(iforwardmode))
-
-            # 检测文件是否存在，存在则不需要再次优化
-            csvfile = reportfolder + "\\{}.{}.{}.{}.{}.{}.csv".format(expertfile.rsplit(sep=".", maxsplit=1)[0], symbol, tf_affix, t0, t1, t2)
-            if __mypath__.path_exists(reportfile) and __mypath__.path_exists(csvfile):
-                print("已经完成：", reportfile)
-                continue
-
-
-            myMT5run.__init__()
-            myMT5run.config_Tester(expertname, symbol, timeframe, fromdate=fromdate, todate=todate,
-                                   forwardmode=iforwardmode, forwarddate=forwarddate,
-                                   delays=0, model=model, optimization=optimization,
-                                   optcriterion=optcriterion, reportfile=reportfile)
-            common_set()
-            strategy_set()
-            # ---检查参数输入是否匹配优化的模式，且写出配置结果。
-            myMT5run.check_inputs_and_write()
-            myMT5run.run_MT5()
-
-
-#%% 测试下哪个优化标准更能找到好策略
 print("run0")
-run(0)
-# print("run6")
-# run(6)
-# print("run7")
-# run(7)
+FwdOpt.run(0)
+
 
 
 
