@@ -92,7 +92,6 @@ FwdParse.prepare()
 FwdParse.get_timedf_matchlist_and_violent()
 
 #%% ### 单独一次筛选 ###
-
 # "净利润" "myCriterion" "总交易" "多头交易" "空头交易" "%总胜率" "%多胜率" "%空胜率" "TB" "Sharpe_MT5"
 # "SQN_MT5_No" "Sharpe_Balance"	"SQN_Balance" "SQN_Balance_No" "Sharpe_Price" "SQN_Price" "SQN_Price_No"
 # "平均盈利" "平均亏损" "盈亏比" "利润因子" "恢复因子" "期望利润" "Kelly占用仓位杠杆" "Kelly止损仓位比率"
@@ -103,11 +102,24 @@ FwdParse.get_timedf_matchlist_and_violent()
 # "最大的连亏($)" "(int)最大的连亏序列数" "平均连胜序列" "平均连亏序列" "获利交易中的最大值"
 # "亏损交易中的最大值"
 
+['AHPR', 'GHPR', 'Kelly占用仓位杠杆', 'Kelly止损仓位比率', 'LRCorrelation', 'LRStandardError',
+ 'Sharpe_MT5', 'SQN_MT5_No', 'Sharpe_Balance', 'SQN_Balance', 'SQN_Balance_No', 'Sharpe_Price',
+ 'SQN_Price', 'SQN_Price_No', 'TB', 'Vince止损仓位比率',
+ '多头交易', '%多胜率', '恢复因子', '回归系数', '回归截距', '获利交易中的最大值', '净利润',
+ '空头交易', '%空胜率', '亏损总和', '亏损交易数量', '亏损交易中的最大值', '利润因子',
+ 'myCriterion', '平均盈利', '平均亏损', '平均连胜序列', '平均连亏序列',
+ '期望利润', '%无仓GHPR_Profit', '%无仓GHPR_Loss', '盈亏比', '盈利总和', '盈利交易数量',
+ '总交易', '%总胜率', '最小净值', '%最大相对回撤比', '最大相对回撤比占额', '%最小保证金',
+ '最大绝对回撤值', '%最大绝对回撤值占比', '(int)最长获利序列', '最长获利序列额($)',
+ '(int)最长亏损序列', '最长亏损序列额($)', '最大的连利($)', '(int)最大的连利序列数',
+ '最大的连亏($)', '(int)最大的连亏序列数']
+
 # ---训练集根据sortby降序排序后，从中选择count个行，再根据chooseby选择前n个最大值，再根据resultby表示结果.
-sortby = "回归截距" # "Kelly占用仓位杠杆" "myCriterion" "盈亏比" "平均盈利" "盈利总和" "盈利交易数量"
+sortby = "LRStandardError" # "Kelly占用仓位杠杆" "myCriterion" "盈亏比" "平均盈利" "盈利总和" "盈利交易数量"
 count = 0.5  # 0.5一半，-1全部。注意有时候遗传算法导致结果太少，所以用-1更好
-chooseby = "盈亏比" # "TB"
+chooseby = "LRCorrelation" # "TB"
 n = 5
 resultlist=["TB", "净利润"]
 
 FwdParse.parse_parameters(sortby=sortby, count=count, chooseby=chooseby, n=n, resultlist=resultlist)
+

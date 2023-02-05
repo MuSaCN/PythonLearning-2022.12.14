@@ -75,17 +75,17 @@ import warnings
 warnings.filterwarnings('ignore')
 
 # (***)推进回测(***)
-symbollist = ["NZDJPY","USDJPY","XAUUSD"] # 策略的品种列表******
+symbollist = ["XAUUSD"] # 策略的品种列表******
 timeframe = "TIMEFRAME_M15" # 策略的时间框******
 bt_starttime = "2016.07.01"  # 手动指定******，一般为推进样本外的起始
-bt_endtime = "2023.01.27"  # 手动指定******，一般为最近的时间
+bt_endtime = "2023.02.05"  # 手动指定******，一般为最近的时间
 
 # (***)输出目录(***)
 # 输出的总目录******
 contentfolder = r"F:\BaiduNetdiskWorkspace\工作---MT5策略研究\8.ZigZag与均线缠绕后突破轨道"
 # 之前推进分析手工建立的目录******
 bt_folder = contentfolder + r"\2.策略筛选.2016-07-01.2023-01-01"
-# 报告保存的目录******
+# 报告保存的目录
 bt_reportfolder = bt_folder + r"\筛选后测试.{}_{}".format(bt_starttime.replace(".",""), bt_endtime.replace(".","")) # 格式为：筛选后测试.20160701_20230127
 myfile.makedirs(bt_reportfolder, True)
 
@@ -97,7 +97,7 @@ bt_forwardmode = 0  # 向前检测 (0 "No", 1 "1/2", 2 "1/3", 3 "1/4", 4 "Custom
 bt_model = 1  # 0 "每笔分时", 1 "1 分钟 OHLC", 2 "仅开盘价", 3 "数学计算", 4 "每个点基于实时点"
 bt_optimization = 0  # 0 禁用优化, 1 "慢速完整算法", 2 "快速遗传算法", 3 "所有市场观察里选择的品种"
 profitinpips = 0 # profitinpips = 1 用pips作为利润，不用具体的货币。0用具体货币，且考虑佣金
-delays = 232 # ******
+delays = 230 # ******
 
 
 # ###### 主要函数 ######
@@ -115,7 +115,7 @@ def strategy_set():
 #%%
 for symbol in symbollist:
     # ex5的名称******，要修改
-    bt_expertfile = "a1.推进交易.{}.{}.ex5".format(symbol, myMT5run.timeframe_to_ini_affix(timeframe))
+    bt_expertfile = "a1.f5.{}.{}.ex5".format(symbol, myMT5run.timeframe_to_ini_affix(timeframe))
 
     ###### 通常下面不用修改 ######
     print("1: symbol=",symbol) # symbol = "EURUSD"
@@ -126,7 +126,7 @@ for symbol in symbollist:
     bt_expertname = bt_experfolder + "\\" + bt_expertfile # EA的位置
     print("EA = ",bt_expertname)
     # 输出xml的位置
-    bt_reportfile = bt_reportfolder + "\\{}.{}.{}_{}.xml".format(symbol,tf_affix,bt_starttime.replace(".",""), bt_endtime.replace(".",""))
+    bt_reportfile = bt_reportfolder + "\\{}.{}.{}_{}.xml".format(symbol, tf_affix, bt_starttime.replace(".",""), bt_endtime.replace(".",""))
     print("xml = ", bt_reportfile)
 
     # ---
