@@ -102,7 +102,7 @@ def strategy_set():
 
 #%% ###### 策略优化 ######
 
-FwdOpt.experfolder = "My_Experts\\Strategy深度研究4.箱体回调策略"  # (***)基础EA所在的目录(***)
+FwdOpt.experfolder = "My_Experts\\Strategy深度研究\\4.箱体回调策略"  # (***)基础EA所在的目录(***)
 FwdOpt.expertfile = "a1.箱体回调策略.ex5"  # (***)基础EA(***)
 FwdOpt.contentfolder = r"F:\BaiduNetdiskWorkspace\工作---MT5策略研究\7.箱体回调策略" # 输出的总目录******
 
