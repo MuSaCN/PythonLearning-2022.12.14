@@ -121,7 +121,7 @@ def strategy_set2():
 
 # ###### 品种鲁棒性主要函数 ######
 def common_set3():
-    myMT5run.input_set("FrameMode", "1")  # 0-None 1-BTMoreResult 2-OptResult 3-ToDesk 4-GUI
+    myMT5run.input_set("FrameMode", "2")  # 0-None 1-BTMoreResult 2-OptResult 3-ToDesk 4-GUI
 
 def strategy_set3():
     myMT5run.input_set("MainTF", "0||5||0||16388||N")
