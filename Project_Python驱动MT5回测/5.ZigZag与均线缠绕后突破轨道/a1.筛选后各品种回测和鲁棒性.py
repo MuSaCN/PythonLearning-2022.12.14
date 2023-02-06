@@ -110,6 +110,7 @@ def strategy_set3():
     pass
 
 #%% ### 品种鲁棒性 ###
+# 有bug输出内容为空，所以不能自动关闭MT5。
 FwdRob.prepare(common_set3, strategy_set3)
 FwdRob.symbol_robustness()
 
