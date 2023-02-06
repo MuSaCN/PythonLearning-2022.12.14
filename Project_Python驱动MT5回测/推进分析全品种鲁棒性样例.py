@@ -61,9 +61,7 @@ myDefault.set_backend_default("Pycharm")  # Pycharm下需要plt.show()才显示�
 # import warnings
 # warnings.filterwarnings('ignore')
 
-
 # %%
-''' 需要有对应的EA文件，比如 a1.f5._Symbol.M15.ex5，且要设置主要时间框 MainTF 的外部参数！'''
 import warnings
 warnings.filterwarnings('ignore')
 from MyPackage.MyProjects.MT5推进分析.ForwardRobustness import MyClass_ForwardRobustness, myMT5run
@@ -72,7 +70,7 @@ FwdRob = MyClass_ForwardRobustness()
 # (***)推进回测(***)
 FwdRob.symbollist = ["AUDJPY","GBPJPY","GBPUSD","USDJPY","XAUUSD"] # 策略的品种列表******
 FwdRob.timeframe = "TIMEFRAME_M15" # 策略的时间框******
-FwdRob.bt_starttime = "2020.01.01"  # 手动指定******，一般为推进样本外的起始
+FwdRob.bt_starttime = "2016.07.01"  # 手动指定******，一般为推进样本外的起始
 FwdRob.bt_endtime = "2023.02.06"  # 手动指定******，一般为最近的时间
 
 # (***)输出目录(***)
@@ -89,16 +87,15 @@ FwdRob.bt_reportfolder3 = FwdRob.bt_folder + r"\Symbol鲁棒性.{}_{}".format(Fw
 
 
 # (***)推进回测EA的目录(后面不能带\\)和文件名(***)
-FwdRob.bt_experfolder = "My_Experts\\Strategy深度研究\\5.ZigZag与均线缠绕后突破轨道\\推进交易.2Y6M"
+FwdRob.bt_experfolder = "My_Experts\\EA测试"
 # (***)ex5的名称格式(***)，要修改
-FwdRob.bt_expertnameform = "a1.f5.{}.{}.ex5" # 必须是 a1.f5.EURUSD.M15 格式，最后两个{}对应品种.时间框词缀.
+FwdRob.bt_expertnameform = "a1.f0.{}.{}.ex5" # 必须是 a1.f5.EURUSD.M15 格式，最后两个{}对应品种.时间框词缀.
 
 # (***)回测的设置(***)，一般只要修改 delays
 FwdRob.bt_forwardmode = 0  # 向前检测 (0 "No", 1 "1/2", 2 "1/3", 3 "1/4", 4 "Custom")
 FwdRob.bt_model = 1  # 0 "每笔分时", 1 "1 分钟 OHLC", 2 "仅开盘价", 3 "数学计算", 4 "每个点基于实时点"
 FwdRob.profitinpips = 0 # profitinpips = 1 用pips作为利润，不用具体的货币。0用具体货币，且考虑佣金
 FwdRob.delays = 230 # ******
-
 
 
 #%%
@@ -109,11 +106,8 @@ def common_set3():
 def strategy_set3():
     pass
 
+
 #%% ### 品种鲁棒性 ###
 FwdRob.prepare(common_set3, strategy_set3)
 FwdRob.symbol_robustness()
-
-
-
-
 
