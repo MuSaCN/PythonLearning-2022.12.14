@@ -70,77 +70,83 @@ myDefault.set_backend_default("Pycharm")  # Pycharm下需要plt.show()才显示�
 
 
 # %%
-''' # 输出内容保存到"工作---MT5策略研究"目录，以及MT5的Common目录。 '''
+''' 需要有对应的EA文件，比如 a1.f5.EURUSD.M15.ex5，且要设置主要时间框的外部参数！'''
 import warnings
 warnings.filterwarnings('ignore')
+from MyPackage.MyProjects.MT5推进分析.ForwardRobustness import MyClass_ForwardRobustness, myMT5run
+FwdRob = MyClass_ForwardRobustness()
 
 # (***)推进回测(***)
-symbollist = ["XAUUSD"] # 策略的品种列表******
-timeframe = "TIMEFRAME_M15" # 策略的时间框******
-bt_starttime = "2016.07.01"  # 手动指定******，一般为推进样本外的起始
-bt_endtime = "2023.02.05"  # 手动指定******，一般为最近的时间
+FwdRob.symbollist = ["AUDJPY","GBPJPY","GBPUSD","USDJPY","XAUUSD"] # 策略的品种列表******
+FwdRob.timeframe = "TIMEFRAME_M15" # 策略的时间框******
+FwdRob.bt_starttime = "2016.07.01"  # 手动指定******，一般为推进样本外的起始
+FwdRob.bt_endtime = "2023.02.06"  # 手动指定******，一般为最近的时间
 
 # (***)输出目录(***)
 # 输出的总目录******
-contentfolder = r"F:\BaiduNetdiskWorkspace\工作---MT5策略研究\8.ZigZag与均线缠绕后突破轨道"
+FwdRob.contentfolder = r"F:\BaiduNetdiskWorkspace\工作---MT5策略研究\8.ZigZag与均线缠绕后突破轨道"
 # 之前推进分析手工建立的目录******
-bt_folder = contentfolder + r"\2.策略筛选.2016-07-01.2023-01-01"
-# 报告保存的目录
-bt_reportfolder = bt_folder + r"\筛选后测试.{}_{}".format(bt_starttime.replace(".",""), bt_endtime.replace(".","")) # 格式为：筛选后测试.20160701_20230127
-myfile.makedirs(bt_reportfolder, True)
+FwdRob.bt_folder = FwdRob.contentfolder + r"\2.策略筛选.2016-07-01.2023-01-01"
+
+
+# 各类报告保存的目录，一般不要改.
+FwdRob.bt_reportfolder1 = FwdRob.bt_folder + r"\筛选后回测.{}_{}".format(FwdRob.bt_starttime.replace(".",""), FwdRob.bt_endtime.replace(".","")) # 格式为：筛选后回测.20160701_20230205
+FwdRob.bt_reportfolder2 = FwdRob.bt_folder + r"\TF鲁棒性.{}_{}".format(FwdRob.bt_starttime.replace(".",""), FwdRob.bt_endtime.replace(".","")) # 格式为：TF鲁棒性.20160701_20230205
+FwdRob.bt_reportfolder3 = FwdRob.bt_folder + r"\Symbol鲁棒性.{}_{}".format(FwdRob.bt_starttime.replace(".",""), FwdRob.bt_endtime.replace(".","")) # 格式为：Symbol鲁棒性.20160701_20230205
+
 
 # (***)推进回测EA的目录(后面不能带\\)和文件名(***)
-bt_experfolder = "My_Experts\\Strategy深度研究\\5.ZigZag与均线缠绕后突破轨道\\推进交易.2Y6M"
+FwdRob.bt_experfolder = "My_Experts\\Strategy深度研究\\5.ZigZag与均线缠绕后突破轨道\\推进交易.2Y6M"
+# (***)ex5的名称(***)，要修改
+FwdRob.bt_expertname = "a1.f5.{}.{}.ex5" # 必须是 a1.f5.EURUSD.M15 格式，最后两个{}对应品种.时间框词缀.
 
 # (***)回测的设置(***)，一般只要修改 delays
-bt_forwardmode = 0  # 向前检测 (0 "No", 1 "1/2", 2 "1/3", 3 "1/4", 4 "Custom")
-bt_model = 1  # 0 "每笔分时", 1 "1 分钟 OHLC", 2 "仅开盘价", 3 "数学计算", 4 "每个点基于实时点"
-bt_optimization = 0  # 0 禁用优化, 1 "慢速完整算法", 2 "快速遗传算法", 3 "所有市场观察里选择的品种"
-profitinpips = 0 # profitinpips = 1 用pips作为利润，不用具体的货币。0用具体货币，且考虑佣金
-delays = 230 # ******
-
-
-# ###### 主要函数 ######
-# ------通用分析套件参数------
-# 不需要每个参数都指定，用之前把MT5对应的EA参数默认化一下就行，需要修改的专门指定就行.
-# 使用时要修改，请标注 *******
-def common_set():
-    myMT5run.input_set("FrameMode", "1")  # 0-None 1-BTMoreResult 2-OptResult 3-ToDesk 4-GUI
-
-# ---(***)推进回测策略参数(***)---
-def strategy_set():
-    pass
+FwdRob.bt_forwardmode = 0  # 向前检测 (0 "No", 1 "1/2", 2 "1/3", 3 "1/4", 4 "Custom")
+FwdRob.bt_model = 1  # 0 "每笔分时", 1 "1 分钟 OHLC", 2 "仅开盘价", 3 "数学计算", 4 "每个点基于实时点"
+FwdRob.profitinpips = 0 # profitinpips = 1 用pips作为利润，不用具体的货币。0用具体货币，且考虑佣金
+FwdRob.delays = 230 # ******
 
 
 #%%
-for symbol in symbollist:
-    # ex5的名称******，要修改
-    bt_expertfile = "a1.f5.{}.{}.ex5".format(symbol, myMT5run.timeframe_to_ini_affix(timeframe))
+# ###### 单次回测主要函数 ######
+# ------通用分析套件参数------
+# 不需要每个参数都指定，用之前把MT5对应的EA参数默认化一下就行，需要修改的专门指定就行.
+# 使用时要修改，请标注 *******
+def common_set1():
+    myMT5run.input_set("FrameMode", "1")  # 0-None 1-BTMoreResult 2-OptResult 3-ToDesk 4-GUI
 
-    ###### 通常下面不用修改 ######
-    print("1: symbol=",symbol) # symbol = "EURUSD"
-    if symbol in []:
-        continue
-    # ---
-    tf_affix = myMT5run.timeframe_to_ini_affix(timeframe)  # 时间框词缀 tf_affix="M30"
-    bt_expertname = bt_experfolder + "\\" + bt_expertfile # EA的位置
-    print("EA = ",bt_expertname)
-    # 输出xml的位置
-    bt_reportfile = bt_reportfolder + "\\{}.{}.{}_{}.xml".format(symbol, tf_affix, bt_starttime.replace(".",""), bt_endtime.replace(".",""))
-    print("xml = ", bt_reportfile)
+# ---(***)推进回测策略参数(***)---
+def strategy_set1():
+    myMT5run.input_set("MainTF", "0||5||0||16388||N")
 
-    # ---
-    myMT5run.__init__()
-    myMT5run.config_Tester(bt_expertname, symbol, timeframe, fromdate=bt_starttime,
-                           todate=bt_endtime,forwardmode=bt_forwardmode, forwarddate=None,
-                           delays=delays, model=bt_model, optimization=bt_optimization,
-                           optcriterion=6, profitinpips=profitinpips, reportfile=bt_reportfile)
-    common_set()
-    strategy_set()
-    # ---检查参数输入是否匹配优化的模式，且写出配置结果。
-    myMT5run.check_inputs_and_write()
-    myMT5run.run_MT5(open=False)
+# ###### 时间框鲁棒性主要函数 ######
+def common_set2():
+    myMT5run.input_set("FrameMode", "2")  # 0-None 1-BTMoreResult 2-OptResult 3-ToDesk 4-GUI
 
+def strategy_set2():
+    myMT5run.input_set("MainTF", "0||5||0||16388||Y") # 5M ---> 4H
+
+# ###### 品种鲁棒性主要函数 ######
+def common_set3():
+    myMT5run.input_set("FrameMode", "1")  # 0-None 1-BTMoreResult 2-OptResult 3-ToDesk 4-GUI
+
+def strategy_set3():
+    myMT5run.input_set("MainTF", "0||5||0||16388||N")
+
+
+
+
+#%% ### 单次回测 ###
+FwdRob.prepare(common_set1, strategy_set1)
+FwdRob.symbollist_backtest()
+
+#%% ### 时间框鲁棒性 ###
+FwdRob.prepare(common_set2, strategy_set2)
+FwdRob.tf_robustness()
+
+#%% ### 品种鲁棒性 ###
+FwdRob.prepare(common_set3, strategy_set3)
+FwdRob.symbol_robustness()
 
 
 
