@@ -72,7 +72,7 @@ FwdRob = MyClass_ForwardRobustness()
 # (***)推进回测(***)
 FwdRob.symbollist = ["AUDJPY","GBPJPY","GBPUSD","USDJPY","XAUUSD"] # 策略的品种列表******
 FwdRob.timeframe = "TIMEFRAME_M15" # 策略的时间框******
-FwdRob.bt_starttime = "2020.01.01"  # 手动指定******，一般为推进样本外的起始
+FwdRob.bt_starttime = "2016.07.01"  # 手动指定******，一般为推进样本外的起始
 FwdRob.bt_endtime = "2023.02.06"  # 手动指定******，一般为最近的时间
 
 # (***)输出目录(***)
@@ -100,17 +100,45 @@ FwdRob.profitinpips = 0 # profitinpips = 1 用pips作为利润，不用具体的
 FwdRob.delays = 230 # ******
 
 
-
 #%%
+# ###### 单次回测主要函数 ######
+# ------通用分析套件参数------
+# 不需要每个参数都指定，用之前把MT5对应的EA参数默认化一下就行，需要修改的专门指定就行.
+# 使用时要修改，请标注 *******
+def common_set1():
+    myMT5run.input_set("FrameMode", "1")  # 0-None 1-BTMoreResult 2-OptResult 3-ToDesk 4-GUI
+
+# ---(***)推进回测策略参数(***)---
+def strategy_set1():
+    myMT5run.input_set("MainTF", "0||5||0||16388||N")
+
+# ###### 时间框鲁棒性主要函数 ######
+def common_set2():
+    myMT5run.input_set("FrameMode", "2")  # 0-None 1-BTMoreResult 2-OptResult 3-ToDesk 4-GUI
+
+def strategy_set2():
+    myMT5run.input_set("MainTF", "0||5||0||16388||Y") # 5M ---> 4H
+
 # ###### 品种鲁棒性主要函数 ######
 def common_set3():
-    pass
+    myMT5run.input_set("FrameMode", "2")  # 0-None 1-BTMoreResult 2-OptResult 3-ToDesk 4-GUI
 
 def strategy_set3():
-    pass
+    myMT5run.input_set("MainTF", "0||5||0||16388||N")
+
+
+
+
+#%% ### 单次回测 ###
+FwdRob.prepare(common_set1, strategy_set1)
+FwdRob.symbollist_backtest()
+
+#%% ### 时间框鲁棒性 ###
+FwdRob.prepare(common_set2, strategy_set2)
+FwdRob.tf_robustness()
 
 #%% ### 品种鲁棒性 ###
-# 有bug输出内容为空，所以不能自动关闭MT5。
+# 有bug输出内容为空，所以不自动关闭MT5.
 FwdRob.prepare(common_set3, strategy_set3)
 FwdRob.symbol_robustness()
 
