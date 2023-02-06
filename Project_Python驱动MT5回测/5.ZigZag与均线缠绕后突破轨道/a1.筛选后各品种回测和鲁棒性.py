@@ -63,7 +63,7 @@ myDefault.set_backend_default("Pycharm")  # Pycharm下需要plt.show()才显示�
 
 
 # %%
-''' 需要有对应的EA文件，比如 a1.f5._Symbol.M15.ex5，且要设置主要时间框 MainTF 的外部参数！'''
+''' 需要有对应的EA文件，比如 a1.f5.EURUSD.M15.ex5，且要设置主要时间框 MainTF 的外部参数！'''
 import warnings
 warnings.filterwarnings('ignore')
 from MyPackage.MyProjects.MT5推进分析.ForwardRobustness import MyClass_ForwardRobustness, myMT5run
