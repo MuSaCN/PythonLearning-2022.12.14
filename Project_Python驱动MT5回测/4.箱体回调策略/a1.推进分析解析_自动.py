@@ -62,6 +62,8 @@ myDefault.set_backend_default("Pycharm")  # Pycharm下需要plt.show()才显示�
 # warnings.filterwarnings('ignore')
 
 #%%
+import warnings
+warnings.filterwarnings('ignore')
 from MyPackage.MyProjects.MT5推进分析.ForwardAutoParse import MyClass_ForwardAutoParse, myMT5run
 FwdAuto = MyClass_ForwardAutoParse()
 
