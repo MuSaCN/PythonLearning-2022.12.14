@@ -138,10 +138,10 @@ FwdRob.prepare(common_set2, strategy_set2)
 FwdRob.tf_robustness()
 
 #%% ### 品种鲁棒性 ###
-# 注意全品种测试时，内部参数要符合相应的条件才行！
+# 注意全品种测试时，EA内部参数要符合相应的条件才行！
 # 有bug输出内容为空，所以不自动关闭MT5.
 FwdRob.prepare(common_set3, strategy_set3)
-FwdRob.symbol_robustness()
+FwdRob.symbol_robustness(shutdownterminal=1)
 
 
 
