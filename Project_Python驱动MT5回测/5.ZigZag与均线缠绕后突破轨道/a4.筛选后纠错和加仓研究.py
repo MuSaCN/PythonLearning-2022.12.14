@@ -61,90 +61,77 @@ myDefault.set_backend_default("Pycharm")  # Pycharm下需要plt.show()才显示�
 # import warnings
 # warnings.filterwarnings('ignore')
 
-
 # %%
-''' 
-需要有对应的EA文件，比如 a1.f5._Symbol.M15.ex5，且要设置主要时间框 MainTF 的外部参数！
-其中品种鲁棒性需要有对应文件，比如 a1.f5.EURUSD.M15.ex5，内部要指定好 FileSymbol 参数.
-'''
+''' 需要有对应的EA文件，比如 a4.f5._Symbol.M15.ex5，且要有对应的修复参数和加仓参数！'''
 import warnings
 warnings.filterwarnings('ignore')
-from MyPackage.MyProjects.MT5推进分析.ForwardRobustness import MyClass_ForwardRobustness, myMT5run
-FwdRob = MyClass_ForwardRobustness()
+from MyPackage.MyProjects.MT5推进分析.ForwardRepairAdd import MyClass_ForwardRepairAdd, myMT5run
+FwdRprAd = MyClass_ForwardRepairAdd()
 
 # (***)推进回测(***)
-FwdRob.symbollist = ["AUDJPY","GBPJPY","GBPUSD","USDJPY","XAUUSD"] # 策略的品种列表******
-FwdRob.timeframe = "TIMEFRAME_M15" # 策略的时间框******
-FwdRob.bt_starttime = "2016.07.01"  # 手动指定******，一般为推进样本外的起始
-FwdRob.bt_endtime = "2023.02.06"  # 手动指定******，一般为最近的时间
+FwdRprAd.symbollist = ["GBPJPY","GBPUSD","USDJPY","XAUUSD"] # 策略的品种列表******
+FwdRprAd.timeframe = "TIMEFRAME_M15" # 策略的时间框******
+FwdRprAd.bt_starttime = "2016.07.01"  # 手动指定******，一般为推进样本外的起始
+FwdRprAd.bt_endtime = "2023.02.07"  # 手动指定******，一般为最近的时间
 
 # (***)输出目录(***)
 # 输出的总目录******
-FwdRob.contentfolder = r"F:\BaiduNetdiskWorkspace\工作---MT5策略研究\8.ZigZag与均线缠绕后突破轨道"
+FwdRprAd.contentfolder = r"F:\BaiduNetdiskWorkspace\工作---MT5策略研究\8.ZigZag与均线缠绕后突破轨道"
 # 之前推进分析手工建立的目录******
-FwdRob.bt_folder = FwdRob.contentfolder + r"\2.策略筛选.2016-07-01.2023-01-01"
-
-
-# 各类报告保存的目录，一般不要改.
-FwdRob.bt_reportfolder1 = FwdRob.bt_folder + r"\筛选后回测.{}_{}".format(FwdRob.bt_starttime.replace(".",""), FwdRob.bt_endtime.replace(".","")) # 格式为：筛选后回测.20160701_20230205
-FwdRob.bt_reportfolder2 = FwdRob.bt_folder + r"\TF鲁棒性.{}_{}".format(FwdRob.bt_starttime.replace(".",""), FwdRob.bt_endtime.replace(".","")) # 格式为：TF鲁棒性.20160701_20230205
-FwdRob.bt_reportfolder3 = FwdRob.bt_folder + r"\Symbol鲁棒性.{}_{}".format(FwdRob.bt_starttime.replace(".",""), FwdRob.bt_endtime.replace(".","")) # 格式为：Symbol鲁棒性.20160701_20230205
+FwdRprAd.bt_folder = FwdRprAd.contentfolder + r"\3.筛选后修复和加仓.2016-07-01.2023-01-01"
 
 
 # (***)推进回测EA的目录(后面不能带\\)和文件名(***)
-FwdRob.bt_experfolder = "My_Experts\\Strategy深度研究\\5.ZigZag与均线缠绕后突破轨道\\推进交易.2Y6M"
+FwdRprAd.bt_experfolder = "My_Experts\\Strategy深度研究\\5.ZigZag与均线缠绕后突破轨道\\推进交易.2Y6M"
 # (***)ex5的名称格式(***)，要修改
-FwdRob.bt_expertnameform = "a1.f5.{}.{}.ex5" # 必须是 a1.f5.EURUSD.M15 格式，最后两个{}对应品种.时间框词缀.
+FwdRprAd.bt_expertnameform = "a4.f5.{}.{}.ex5" # 必须是 a4.f5._Symbol.M15 格式，最后两个{}对应品种.时间框词缀.
 
 # (***)回测的设置(***)，一般只要修改 delays
-FwdRob.bt_forwardmode = 0  # 向前检测 (0 "No", 1 "1/2", 2 "1/3", 3 "1/4", 4 "Custom")
-FwdRob.bt_model = 1  # 0 "每笔分时", 1 "1 分钟 OHLC", 2 "仅开盘价", 3 "数学计算", 4 "每个点基于实时点"
-FwdRob.profitinpips = 0 # profitinpips = 1 用pips作为利润，不用具体的货币。0用具体货币，且考虑佣金
-FwdRob.delays = 230 # ******
+FwdRprAd.bt_model = 1  # 0 "每笔分时", 1 "1 分钟 OHLC", 2 "仅开盘价", 3 "数学计算", 4 "每个点基于实时点"
+FwdRprAd.bt_profitinpips = 0 # profitinpips = 1 用pips作为利润，不用具体的货币。0用具体货币，且考虑佣金
+FwdRprAd.bt_optimization = 1  #  0 禁用优化, 1 "慢速完整算法", 2 "快速遗传算法", 3 "所有市场观察里选择的品种"
+
 
 
 #%%
 # ###### 单次回测主要函数 ######
 # ------通用分析套件参数------
-# 不需要每个参数都指定，用之前把MT5对应的EA参数默认化一下就行，需要修改的专门指定就行.
-# 使用时要修改，请标注 *******
-def common_set1():
-    myMT5run.input_set("FrameMode", "1")  # 0-None 1-BTMoreResult 2-OptResult 3-ToDesk 4-GUI
-
-# ---(***)推进回测策略参数(***)---
-def strategy_set1():
-    myMT5run.input_set("MainTF", "0||5||0||16388||N")
-
-# ###### 时间框鲁棒性主要函数 ######
-def common_set2():
+def common_set():
     myMT5run.input_set("FrameMode", "2")  # 0-None 1-BTMoreResult 2-OptResult 3-ToDesk 4-GUI
 
-def strategy_set2():
-    myMT5run.input_set("MainTF", "0||5||0||16388||Y") # 5M ---> 4H
+def strategy_set1(): # Repair_ExpandPoint
+    myMT5run.input_set("Inp_RepairMode", "1||0||0||3||N")
+    myMT5run.input_set("Repair_ExpandPoint", "200||100||20||400||Y")
+    myMT5run.input_set("Repairt_FixedPointStart", "200||100||20||400||N")
+    myMT5run.input_set("Repair_ATRMulti", "2.0||1.0||0.1||4.0||N")
 
-# ###### 品种鲁棒性主要函数 ######
-def common_set3():
-    myMT5run.input_set("FrameMode", "2")  # 0-None 1-BTMoreResult 2-OptResult 3-ToDesk 4-GUI
+def strategy_set2(): # Repairt_FixedPointStart
+    myMT5run.input_set("Inp_RepairMode", "2||0||0||3||N")
+    myMT5run.input_set("Repair_ExpandPoint", "200||100||20||400||N")
+    myMT5run.input_set("Repairt_FixedPointStart", "200||100||20||400||Y")
+    myMT5run.input_set("Repair_ATRMulti", "2.0||1.0||0.1||4.0||N")
 
-def strategy_set3():
-    myMT5run.input_set("MainTF", "0||5||0||16388||N")
+def strategy_set3(): # Repair_ATRMulti
+    myMT5run.input_set("Inp_RepairMode", "3||0||0||3||N")
+    myMT5run.input_set("Repair_ExpandPoint", "200||100||20||400||N")
+    myMT5run.input_set("Repairt_FixedPointStart", "200||100||20||400||N")
+    myMT5run.input_set("Repair_ATRMulti", "2.0||1.0||0.1||4.0||Y")
+
+
+#%%
+FwdRprAd.prepare(common_set, strategy_set1)
+FwdRprAd.repair_opt("Repair_ExpandPoint")
+
+#%%
+FwdRprAd.prepare(common_set, strategy_set2)
+FwdRprAd.repair_opt("Repair_FixedPointStart")
+
+#%%
+FwdRprAd.prepare(common_set, strategy_set3)
+FwdRprAd.repair_opt("Repair_ATRMulti")
 
 
 
-
-#%% ### 单次回测 ###
-FwdRob.prepare(common_set1, strategy_set1)
-FwdRob.symbollist_backtest()
-
-#%% ### 时间框鲁棒性 ###
-FwdRob.prepare(common_set2, strategy_set2)
-FwdRob.tf_robustness()
-
-#%% ### 品种鲁棒性 ###
-# 注意全品种测试时，EA内部参数要符合相应的条件才行！
-# 有bug输出内容为空，所以不自动关闭MT5.
-FwdRob.prepare(common_set3, strategy_set3)
-FwdRob.symbol_robustness(shutdownterminal=1)
 
 
 
