@@ -119,3 +119,7 @@ def strategy_set2(): # SplitFormula
     myMT5run.input_set("Inp_Lots_IncreInitLots", "0.01||0.1||0.010000||1.000000||N")
 FwdRprAd.prepare(common_set, strategy_set2)
 FwdRprAd.combine_symbol_opt(symbol="USDJPY", optimization=1, deposit=2000)
+
+
+
+
