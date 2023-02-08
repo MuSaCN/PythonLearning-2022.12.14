@@ -70,6 +70,7 @@ FwdRprAd = MyClass_ForwardRepairAdd()
 
 # (***)推进回测(***)
 FwdRprAd.symbollist = ["AUDJPY","GBPJPY","GBPUSD","USDJPY","XAUUSD"] # 策略的品种列表******
+# FwdRprAd.symbollist = ["GBPJPY"] # 策略的品种列表******
 FwdRprAd.timeframe = "TIMEFRAME_M15" # 策略的时间框******
 FwdRprAd.bt_starttime = "2016.07.01"  # 手动指定******，一般为推进样本外的起始
 FwdRprAd.bt_endtime = "2023.02.07"  # 手动指定******，一般为最近的时间
@@ -79,7 +80,10 @@ FwdRprAd.bt_endtime = "2023.02.07"  # 手动指定******，一般为最近的时
 FwdRprAd.contentfolder = r"F:\BaiduNetdiskWorkspace\工作---MT5策略研究\8.ZigZag与均线缠绕后突破轨道"
 # 之前推进分析手工建立的目录******
 FwdRprAd.bt_folder = FwdRprAd.contentfolder + r"\3.筛选后修复和加仓.2016-07-01.2023-01-01"
+FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "最后回测"
 
+# (***)tag=-1最新推进参数测试全体，要EA设置好(***)
+# FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "最后回测(tag=-1)"
 
 # (***)推进回测EA的目录(后面不能带\\)和文件名(***)
 FwdRprAd.bt_experfolder = "My_Experts\\Strategy深度研究\\5.ZigZag与均线缠绕后突破轨道\\推进交易.2Y6M"
