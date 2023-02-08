@@ -80,10 +80,10 @@ FwdRprAd.bt_endtime = "2023.02.07"  # 手动指定******，一般为最近的时
 FwdRprAd.contentfolder = r"F:\BaiduNetdiskWorkspace\工作---MT5策略研究\8.ZigZag与均线缠绕后突破轨道"
 # 之前推进分析手工建立的目录******
 FwdRprAd.bt_folder = FwdRprAd.contentfolder + r"\3.筛选后修复和加仓.2016-07-01.2023-01-01"
-FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "最后回测"
+FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "各品种最后回测"
+# FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "各品种最后回测(tag=-1)" # tag=-1EA设置好******
+# FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "各品种最后回测_极端净利润"
 
-# (***)tag=-1最新推进参数测试全体，要EA设置好(***)
-# FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "最后回测(tag=-1)"
 
 # (***)推进回测EA的目录(后面不能带\\)和文件名(***)
 FwdRprAd.bt_experfolder = "My_Experts\\Strategy深度研究\\5.ZigZag与均线缠绕后突破轨道\\推进交易.2Y6M"
@@ -103,6 +103,8 @@ def common_set():
     myMT5run.input_set("FrameMode", "1")  # 0-None 1-BTMoreResult 2-OptResult 3-ToDesk 4-GUI
 
 def strategy_set(): # Repair_ExpandPoint
+    # myMT5run.input_set("Inp_UseExtNet", "true||false||0||true||N")
+    # myMT5run.input_set("INp_ExtNetBegin", "4||4||1||40||N")
     pass
 
 
