@@ -106,7 +106,7 @@ FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "SplitFund"
 def strategy_set1(): # SplitFund
     myMT5run.input_set("Inp_MM_Mode", "3") # SplitFund
     myMT5run.input_set("Inp_Lots_IncreDelta", "100||800||100||2400||Y")
-    myMT5run.input_set("Inp_Lots_IncreInitLots", "0.01||0.1||0.010000||1.000000||Y")
+    myMT5run.input_set("Inp_Lots_IncreInitLots", "0.01||0.1||0.010000||1.000000||N")
 FwdRprAd.prepare(common_set, strategy_set1)
 FwdRprAd.combine_symbol_opt(symbol="USDJPY", optimization=1, deposit=2000)
 
@@ -116,7 +116,7 @@ FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "SplitFormula"
 def strategy_set2(): # SplitFormula
     myMT5run.input_set("Inp_MM_Mode", "4") # SplitFormula
     myMT5run.input_set("Inp_Lots_IncreDelta", "100||400||100||2400||Y")
-    myMT5run.input_set("Inp_Lots_IncreInitLots", "0.01||0.1||0.010000||1.000000||Y")
+    myMT5run.input_set("Inp_Lots_IncreInitLots", "0.01||0.1||0.010000||1.000000||N")
 FwdRprAd.prepare(common_set, strategy_set2)
 FwdRprAd.combine_symbol_opt(symbol="USDJPY", optimization=1, deposit=2000)
 
