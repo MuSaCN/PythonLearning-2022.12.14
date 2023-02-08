@@ -82,7 +82,7 @@ FwdRprAd.contentfolder = r"F:\BaiduNetdiskWorkspace\工作---MT5策略研究\8.Z
 FwdRprAd.bt_folder = FwdRprAd.contentfolder + r"\3.筛选后修复和加仓.2016-07-01.2023-01-01"
 FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "各品种最后回测"
 # FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "各品种最后回测(tag=-1)" # tag=-1EA设置好******
-# FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "各品种最后回测_极端净利润"
+# FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "各品种最后回测_同向不可重复持仓"
 
 
 # (***)推进回测EA的目录(后面不能带\\)和文件名(***)
@@ -105,6 +105,7 @@ def common_set():
 def strategy_set(): # Repair_ExpandPoint
     # myMT5run.input_set("Inp_UseExtNet", "true||false||0||true||N")
     # myMT5run.input_set("INp_ExtNetBegin", "4||4||1||40||N")
+    # myMT5run.input_set("Bool_SideReSignal", "false")
     pass
 
 
