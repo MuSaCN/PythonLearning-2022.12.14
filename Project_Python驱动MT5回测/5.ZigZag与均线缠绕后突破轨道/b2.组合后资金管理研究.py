@@ -71,15 +71,14 @@ FwdRprAd = MyClass_ForwardRepairAdd()
 # (***)推进回测(***)
 FwdRprAd.timeframe = "TIMEFRAME_M15" # 策略的时间框******
 FwdRprAd.bt_starttime = "2016.07.01"  # 手动指定******，一般为推进样本外的起始
-
-FwdRprAd.bt_starttime = "2021.08.01"  # 特殊时间测试！！！
+# FwdRprAd.bt_starttime = "2022.10.5"  # 特殊时间测试！！！
 FwdRprAd.bt_endtime = "2023.02.08"  # 手动指定******，一般为最近的时间
 
 # (***)输出目录(***)
 # 输出的总目录******
 FwdRprAd.contentfolder = r"F:\BaiduNetdiskWorkspace\工作---MT5策略研究\8.ZigZag与均线缠绕后突破轨道"
 # 之前手工建立的目录******
-FwdRprAd.bt_folder = FwdRprAd.contentfolder + r"\3.筛选后修复和加仓.2016-07-01.2023-01-01\组合回测_2.考虑是否重复持仓"
+FwdRprAd.bt_folder = FwdRprAd.contentfolder + r"\3.筛选后修复和加仓.2016-07-01.2023-01-01\组合回测_3.去除USDJPY"
 
 
 # (***)推进回测EA的目录(后面不能带\\)和文件名(***)
@@ -104,7 +103,7 @@ def common_set():
 # (***)不同模式不同保存目录(***)
 FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "SplitFund"
 def strategy_set1(): # SplitFund
-    myMT5run.input_set("Inp_MM_Mode", "3") # SplitFund
+    myMT5run.input_set("Inp_MM_Mode", "3||0||0||8||N") # SplitFund
     myMT5run.input_set("Inp_Lots_IncreDelta", "100||400||50||2400||Y")
     myMT5run.input_set("Inp_Lots_IncreInitLots", "0.01||0.1||0.010000||1.000000||N")
 FwdRprAd.prepare(common_set, strategy_set1)
@@ -114,12 +113,21 @@ FwdRprAd.combine_symbol_opt(symbol="USDJPY", optimization=1, deposit=2000)
 # (***)不同模式不同保存目录(***)
 FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "SplitFormula"
 def strategy_set2(): # SplitFormula
-    myMT5run.input_set("Inp_MM_Mode", "4") # SplitFormula
+    myMT5run.input_set("Inp_MM_Mode", "4||0||0||8||N") # SplitFormula
     myMT5run.input_set("Inp_Lots_IncreDelta", "100||400||50||2400||Y")
     myMT5run.input_set("Inp_Lots_IncreInitLots", "0.01||0.1||0.010000||1.000000||N")
 FwdRprAd.prepare(common_set, strategy_set2)
 FwdRprAd.combine_symbol_opt(symbol="USDJPY", optimization=1, deposit=2000)
 
+#%%
+# (***)不同模式不同保存目录(***)
+FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "StepBalanceRatio"
+def strategy_set3(): # StepBalanceRatio
+    myMT5run.input_set("Inp_MM_Mode", "8||0||0||8||N") # SplitFormula
+    myMT5run.input_set("Inp_Lots_BasicEveryLot", "200000||5000.0||500.000000||50000.000000||N")
+    myMT5run.input_set("Inp_Lots_BasicStep", "2000||500||100||2000||Y")
+FwdRprAd.prepare(common_set, strategy_set3)
+FwdRprAd.combine_symbol_opt(symbol="USDJPY", optimization=1, deposit=2000)
 
 
 
