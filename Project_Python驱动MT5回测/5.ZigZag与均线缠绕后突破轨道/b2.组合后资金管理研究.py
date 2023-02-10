@@ -129,5 +129,13 @@ def strategy_set3(): # StepBalanceRatio
 FwdRprAd.prepare(common_set, strategy_set3)
 FwdRprAd.combine_symbol_opt(symbol="USDJPY", optimization=1, deposit=2000)
 
+#%%
+# (***)不同模式不同保存目录(***)
+FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "OccupyMarginPct"
+def strategy_set4(): # StepBalanceRatio
+    myMT5run.input_set("Inp_MM_Mode", "7||0||0||8||N") # OccupyMarginPct
+    myMT5run.input_set("Inp_Lots_SLRiskPercent", "0.01||0.005||0.001||0.02||Y")
+FwdRprAd.prepare(common_set, strategy_set4)
+FwdRprAd.combine_symbol_opt(symbol="USDJPY", optimization=1, deposit=2000)
 
 
