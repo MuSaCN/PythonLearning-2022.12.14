@@ -111,20 +111,20 @@ FwdRprAd.prepare(common_set, strategy_set)
 
 
 #%%
-FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "各品种最后回测_6.多品种测试\\FXTM_2"
+FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "各品种最后回测_5.多经纪商\\FXTM_2"
 FwdRprAd.multibroker_backtest(server="ForexTimeFXTM-Live02", login="52009289")
 
 
 #%%
-FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "各品种最后回测_6.多品种测试\\Just2Trade"
+FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "各品种最后回测_5.多经纪商\\Just2Trade"
 FwdRprAd.multibroker_backtest(server="Just2Trade-MT5", login="467187")
 
 
 #%%
-FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "各品种最后回测_6.多品种测试\\ICMarkets_1"
+FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "各品种最后回测_5.多经纪商\\ICMarkets_1"
 FwdRprAd.multibroker_backtest(server="ICMarketsSC-MT5-2", login="7148558")
 
 #%%
-FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "各品种最后回测_6.多品种测试\\ICMarkets_2"
+FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "各品种最后回测_5.多经纪商\\ICMarkets_2"
 FwdRprAd.multibroker_backtest(server="ICMarketsSC-MT5-2", login="7148876")
 
