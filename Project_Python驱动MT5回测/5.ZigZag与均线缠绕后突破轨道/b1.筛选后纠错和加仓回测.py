@@ -69,7 +69,7 @@ from MyPackage.MyProjects.MT5推进分析.ForwardRepairAdd import MyClass_Forwar
 FwdRprAd = MyClass_ForwardRepairAdd()
 
 # (***)推进回测(***)
-FwdRprAd.symbollist = ["AUDJPY","GBPJPY","GBPUSD","USDJPY","XAUUSD"] # 策略的品种列表******
+FwdRprAd.symbollist = ["AUDJPY","GBPJPY","GBPUSD","XAUUSD"] # 策略的品种列表******
 # FwdRprAd.symbollist = ["GBPJPY"] # 策略的品种列表******
 FwdRprAd.timeframe = "TIMEFRAME_M15" # 策略的时间框******
 FwdRprAd.bt_starttime = "2016.07.01"  # 手动指定******，一般为推进样本外的起始
@@ -80,9 +80,9 @@ FwdRprAd.bt_endtime = "2023.02.07"  # 手动指定******，一般为最近的时
 FwdRprAd.contentfolder = r"F:\BaiduNetdiskWorkspace\工作---MT5策略研究\8.ZigZag与均线缠绕后突破轨道"
 # 之前推进分析手工建立的目录******
 FwdRprAd.bt_folder = FwdRprAd.contentfolder + r"\3.筛选后修复和加仓.2016-07-01.2023-01-01"
-FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "各品种最后回测"
+FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "各品种最后回测_4.包括止盈"
 # FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "各品种最后回测(tag=-1)" # tag=-1EA设置好******
-# FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "各品种最后回测_同向不可重复持仓"
+# FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "各品种最后回测_2.同向不可重复持仓"
 
 
 # (***)推进回测EA的目录(后面不能带\\)和文件名(***)
