@@ -99,27 +99,27 @@ def common_set():
     myMT5run.input_set("FrameMode", "2")  # 0-None 1-BTMoreResult 2-OptResult 3-ToDesk 4-GUI
 
 
-#%%
+#%% ### SplitFund
 # (***)不同模式不同保存目录(***)
 FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "SplitFund"
 def strategy_set1(): # SplitFund
     myMT5run.input_set("Inp_MM_Mode", "3||0||0||8||N") # SplitFund
-    myMT5run.input_set("Inp_Lots_IncreDelta", "100||400||50||2000||Y")
+    myMT5run.input_set("Inp_Lots_IncreDelta", "100||100||50||2000||Y")
     myMT5run.input_set("Inp_Lots_IncreInitLots", "0.01||0.1||0.010000||1.000000||N")
 FwdRprAd.prepare(common_set, strategy_set1)
 FwdRprAd.combine_symbol_opt(symbol="USDJPY", optimization=1, deposit=2000)
 
-#%%
+#%% ### SplitFormula
 # (***)不同模式不同保存目录(***)
-FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "SplitFormula"
+FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "SplitFormula_扩展"
 def strategy_set2(): # SplitFormula
     myMT5run.input_set("Inp_MM_Mode", "4||0||0||8||N") # SplitFormula
-    myMT5run.input_set("Inp_Lots_IncreDelta", "100||400||50||2000||Y")
+    myMT5run.input_set("Inp_Lots_IncreDelta", "100||100||50||2000||Y")
     myMT5run.input_set("Inp_Lots_IncreInitLots", "0.01||0.1||0.010000||1.000000||N")
 FwdRprAd.prepare(common_set, strategy_set2)
 FwdRprAd.combine_symbol_opt(symbol="USDJPY", optimization=1, deposit=2000)
 
-#%%
+#%% ### SplitFormula
 # (***)不同模式不同保存目录(***)
 FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "StepBalanceRatio"
 def strategy_set3(): # StepBalanceRatio
@@ -129,7 +129,7 @@ def strategy_set3(): # StepBalanceRatio
 FwdRprAd.prepare(common_set, strategy_set3)
 FwdRprAd.combine_symbol_opt(symbol="USDJPY", optimization=1, deposit=2000)
 
-#%%
+#%% ### OccupyMarginPct
 # (***)不同模式不同保存目录(***)
 FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "OccupyMarginPct"
 def strategy_set4(): # StepBalanceRatio
