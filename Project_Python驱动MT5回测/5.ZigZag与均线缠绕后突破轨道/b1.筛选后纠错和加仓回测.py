@@ -69,7 +69,7 @@ from MyPackage.MyProjects.MT5推进分析.ForwardRepairAdd import MyClass_Forwar
 FwdRprAd = MyClass_ForwardRepairAdd()
 
 # (***)推进回测(***)
-FwdRprAd.symbollist = ["AUDJPY","GBPJPY","GBPUSD","XAUUSD"] # 策略的品种列表******
+FwdRprAd.symbollist = ["AUDJPY","GBPJPY","GBPUSD","USDJPY","XAUUSD"] # 策略的品种列表******
 # FwdRprAd.symbollist = ["GBPJPY"] # 策略的品种列表******
 FwdRprAd.timeframe = "TIMEFRAME_M15" # 策略的时间框******
 FwdRprAd.bt_starttime = "2016.07.01"  # 手动指定******，一般为推进样本外的起始
@@ -111,5 +111,5 @@ def strategy_set(): # Repair_ExpandPoint
 
 #%%
 FwdRprAd.prepare(common_set, strategy_set)
-FwdRprAd.last_backtest()
+FwdRprAd.last_backtest(deposit=2000)
 
