@@ -71,7 +71,7 @@ from MyPackage.MyProjects.MT5推进分析.ForwardRobustness import MyClass_Forwa
 FwdRob = MyClass_ForwardRobustness()
 
 # (***)推进回测(***)
-FwdRob.symbollist = ["AUDJPY","GBPJPY","GBPUSD","USDJPY","XAUUSD"] # 策略的品种列表******
+FwdRob.symbollist = ["GBPJPY","GBPUSD"] # 策略的品种列表******
 FwdRob.timeframe = "TIMEFRAME_M15" # 策略的时间框******
 FwdRob.bt_starttime = "2016.07.01"  # 手动指定******，一般为推进样本外的起始
 FwdRob.bt_endtime = "2023.02.11"  # 手动指定******，一般为最近的时间
