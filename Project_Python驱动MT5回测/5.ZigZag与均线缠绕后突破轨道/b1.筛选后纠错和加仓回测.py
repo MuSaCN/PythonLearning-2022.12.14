@@ -80,7 +80,7 @@ FwdRprAd.bt_endtime = "2023.02.07"  # 手动指定******，一般为最近的时
 FwdRprAd.contentfolder = r"F:\BaiduNetdiskWorkspace\工作---MT5策略研究\8.ZigZag与均线缠绕后突破轨道"
 # 之前推进分析手工建立的目录******
 FwdRprAd.bt_folder = FwdRprAd.contentfolder + r"\3.筛选后修复和加仓.2016-07-01.2023-01-01.IC"
-FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "各品种最后回测_4.包括止盈"
+FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "各品种最后回测"
 # FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "各品种最后回测(tag=-1)" # tag=-1EA设置好******
 # FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "各品种最后回测_2.同向不可重复持仓"
 
@@ -88,7 +88,7 @@ FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "各品种最后回测_4.
 # (***)推进回测EA的目录(后面不能带\\)和文件名(***)
 FwdRprAd.bt_experfolder = "My_Experts\\Strategy深度研究\\5.ZigZag与均线缠绕后突破轨道\\推进交易.2Y6M"
 # (***)ex5的名称格式(***)，要修改
-FwdRprAd.bt_expertnameform = "a4.f5.{}.{}.ex5" # 必须是 a4.f5._Symbol.M15 格式，最后两个{}对应品种.时间框词缀.
+FwdRprAd.bt_expertnameform = "a4.f5.{}.{}.ex5" # 必须是 a1.f5._Symbol.M15 或 a1.f5.EURUSD.M15 格式，最后1个{}对应时间框词缀 或 两个{}对应品种.时间框词缀.
 
 # (***)回测的设置(***)，一般只要修改 delays
 FwdRprAd.bt_model = 1  # 0 "每笔分时", 1 "1 分钟 OHLC", 2 "仅开盘价", 3 "数学计算", 4 "每个点基于实时点"
