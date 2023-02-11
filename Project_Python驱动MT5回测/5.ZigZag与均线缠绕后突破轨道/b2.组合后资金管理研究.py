@@ -78,7 +78,7 @@ FwdRprAd.bt_endtime = "2023.02.08"  # 手动指定******，一般为最近的时
 # 输出的总目录******
 FwdRprAd.contentfolder = r"F:\BaiduNetdiskWorkspace\工作---MT5策略研究\8.ZigZag与均线缠绕后突破轨道"
 # 之前手工建立的目录******
-FwdRprAd.bt_folder = FwdRprAd.contentfolder + r"\3.筛选后修复和加仓.2016-07-01.2023-01-01\组合回测_3.去除USDJPY"
+FwdRprAd.bt_folder = FwdRprAd.contentfolder + r"\3.筛选后修复和加仓.2016-07-01.2023-01-01.IC\组合回测_3.去除USDJPY"
 
 
 # (***)推进回测EA的目录(后面不能带\\)和文件名(***)

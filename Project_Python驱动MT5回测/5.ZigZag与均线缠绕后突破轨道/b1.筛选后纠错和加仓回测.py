@@ -80,7 +80,7 @@ FwdRprAd.bt_endtime = "2023.02.07"  # 手动指定******，一般为最近的时
 FwdRprAd.contentfolder = r"F:\BaiduNetdiskWorkspace\工作---MT5策略研究\8.ZigZag与均线缠绕后突破轨道"
 # 之前推进分析手工建立的目录******
 FwdRprAd.bt_folder = FwdRprAd.contentfolder + r"\3.筛选后修复和加仓.2016-07-01.2023-01-01.IC"
-FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "各品种最后回测"
+
 # FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "各品种最后回测(tag=-1)" # tag=-1EA设置好******
 # FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "各品种最后回测_2.同向不可重复持仓"
 
@@ -92,8 +92,7 @@ FwdRprAd.bt_expertnameform = "a4.f5.{}.{}.ex5" # 必须是 a1.f5._Symbol.M15 或
 
 # (***)回测的设置(***)，一般只要修改 delays
 FwdRprAd.bt_model = 1  # 0 "每笔分时", 1 "1 分钟 OHLC", 2 "仅开盘价", 3 "数学计算", 4 "每个点基于实时点"
-FwdRprAd.bt_profitinpips = 0 # profitinpips = 1 用pips作为利润，不用具体的货币。0用具体货币，且考虑佣金
-
+FwdRprAd.bt_profitinpips = 0 # 1 用pips作为利润。0用具体货币，且考虑佣金，0容易出问题。
 
 
 #%%
@@ -102,14 +101,22 @@ FwdRprAd.bt_profitinpips = 0 # profitinpips = 1 用pips作为利润，不用具�
 def common_set():
     myMT5run.input_set("FrameMode", "1")  # 0-None 1-BTMoreResult 2-OptResult 3-ToDesk 4-GUI
 
-def strategy_set(): # Repair_ExpandPoint
-    # myMT5run.input_set("Inp_UseExtNet", "true||false||0||true||N")
-    # myMT5run.input_set("INp_ExtNetBegin", "4||4||1||40||N")
-    # myMT5run.input_set("Bool_SideReSignal", "false")
-    pass
+def strategy_set1():
+    myMT5run.input_set("Bool_SideReSignal", "true")
+    # pass
+
+def strategy_set2():
+    myMT5run.input_set("Bool_SideReSignal", "false")
+    # pass
+
+#%% Bool_SideReSignal=true
+FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "各品种最后回测.1.同向重复"
+FwdRprAd.prepare(common_set, strategy_set1)
+FwdRprAd.last_backtest(deposit=2000)
 
 
-#%%
-FwdRprAd.prepare(common_set, strategy_set)
+#%% Bool_SideReSignal=false
+FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "各品种最后回测.2.同向不重复"
+FwdRprAd.prepare(common_set, strategy_set1)
 FwdRprAd.last_backtest(deposit=2000)
 
