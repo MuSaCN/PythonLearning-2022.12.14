@@ -84,7 +84,7 @@ FwdRob.bt_folder = FwdRob.contentfolder + r"\2.策略筛选.2016-07-01.2023-01-0
 
 
 # 各类报告保存的目录，一般不要改.
-FwdRob.bt_reportfolder1 = FwdRob.bt_folder + r"\止盈研究.{}_{}".format(FwdRob.bt_starttime.replace(".",""), FwdRob.bt_endtime.replace(".","")) # 格式为：筛选后回测.20160701_20230205
+FwdRob.bt_reportfolder1 = FwdRob.bt_folder + r"\止盈研究.{}_{}.IC".format(FwdRob.bt_starttime.replace(".",""), FwdRob.bt_endtime.replace(".","")) # 格式为：筛选后回测.20160701_20230205
 
 
 # (***)推进回测EA的目录(后面不能带\\)和文件名(***)
@@ -106,7 +106,7 @@ FwdRob.delays = 0 # ******
 def common_set():
     myMT5run.input_set("FrameMode", "2")  # 0-None 1-BTMoreResult 2-OptResult 3-ToDesk 4-GUI
     myMT5run.input_set("Inp_Init_TPMode", "4") # POINT
-    myMT5run.input_set("Inp_TP_Point", "3000||1500||50||5000||Y")  # POINT
+    myMT5run.input_set("Inp_TP_Point", "0||1500||50||5000||Y")  # POINT
 
 
 # ---(***)推进回测策略参数(***)---
