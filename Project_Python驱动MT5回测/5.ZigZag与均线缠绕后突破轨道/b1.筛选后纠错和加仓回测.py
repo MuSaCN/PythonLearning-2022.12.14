@@ -117,6 +117,6 @@ FwdRprAd.last_backtest(deposit=2000)
 
 #%% Bool_SideReSignal=false
 FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "各品种最后回测.2.同向不重复"
-FwdRprAd.prepare(common_set, strategy_set1)
+FwdRprAd.prepare(common_set, strategy_set2)
 FwdRprAd.last_backtest(deposit=2000)
 
