@@ -71,20 +71,30 @@ FwdRprAd = MyClass_ForwardRepairAdd()
 # (***)推进回测(***)
 FwdRprAd.timeframe = "TIMEFRAME_M15" # 策略的时间框******
 FwdRprAd.bt_starttime = "2016.07.01"  # 手动指定******，一般为推进样本外的起始
-# FwdRprAd.bt_starttime = "2022.10.5"  # 特殊时间测试！！！
 FwdRprAd.bt_endtime = "2023.02.08"  # 手动指定******，一般为最近的时间
+
+FwdRprAd.bt_starttime = "2019.02.01"  # 敏感特殊时间测试！！！
+FwdRprAd.bt_endtime = "2019.06.20"  # 敏感特殊时间测试！！！
 
 # (***)输出目录(***)
 # 输出的总目录******
 FwdRprAd.contentfolder = r"F:\BaiduNetdiskWorkspace\工作---MT5策略研究\8.ZigZag与均线缠绕后突破轨道"
 # 之前手工建立的目录******
-FwdRprAd.bt_folder = FwdRprAd.contentfolder + r"\3.筛选后修复和加仓.2016-07-01.2023-01-01.IC\组合回测_3.去除USDJPY"
+
+FwdRprAd.bt_folder = FwdRprAd.contentfolder + r"\4.组合.2016-07-01.2023-01-01.IC"
+FwdRprAd.bt_folder = FwdRprAd.contentfolder + r"\4.组合.2016-07-01.2023-01-01.IC\敏感品种敏感时段"
 
 
 # (***)推进回测EA的目录(后面不能带\\)和文件名(***)
 FwdRprAd.bt_experfolder = "My_Experts\\Strategy深度研究\\5.ZigZag与均线缠绕后突破轨道\\推进交易.2Y6M\\组合"
+# 敏感品种敏感时段测试
+FwdRprAd.bt_experfolder = "My_Experts\\Strategy深度研究\\5.ZigZag与均线缠绕后突破轨道\\推进交易.2Y6M"
+
 # (***)ex5的名称格式(***)，要修改
 FwdRprAd.bt_expertnameform = "a5.f5.组合.{}.ex5" # 必须是 a5.f5.组合.M15 格式，最后{}对应时间框词缀.
+# 敏感品种敏感时段测试
+FwdRprAd.bt_expertnameform = "a4.f5.AUDJPY.{}.ex5" # 必须是 a5.f5.组合.M15 格式，最后{}对应时间框词缀.
+
 
 # (***)回测的设置(***)，一般只要修改 delays
 FwdRprAd.bt_model = 1  # 0 "每笔分时", 1 "1 分钟 OHLC", 2 "仅开盘价", 3 "数学计算", 4 "每个点基于实时点"
@@ -107,7 +117,7 @@ def strategy_set1(): # SplitFund
     myMT5run.input_set("Inp_Lots_IncreDelta", "100||100||50||2000||Y")
     myMT5run.input_set("Inp_Lots_IncreInitLots", "0.01||0.1||0.010000||1.000000||N")
 FwdRprAd.prepare(common_set, strategy_set1)
-FwdRprAd.combine_symbol_opt(symbol="USDJPY", optimization=1, deposit=2000)
+FwdRprAd.combine_symbol_opt(symbol="AUDJPY", optimization=1, deposit=2000, shutdownterminal=1)
 
 #%% ### SplitFormula
 # (***)不同模式不同保存目录(***)
@@ -117,7 +127,7 @@ def strategy_set2(): # SplitFormula
     myMT5run.input_set("Inp_Lots_IncreDelta", "100||100||50||2000||Y")
     myMT5run.input_set("Inp_Lots_IncreInitLots", "0.01||0.1||0.010000||1.000000||N")
 FwdRprAd.prepare(common_set, strategy_set2)
-FwdRprAd.combine_symbol_opt(symbol="USDJPY", optimization=1, deposit=2000)
+FwdRprAd.combine_symbol_opt(symbol="AUDJPY", optimization=1, deposit=2000, shutdownterminal=1)
 
 #%% ### SplitFormula
 # (***)不同模式不同保存目录(***)
@@ -127,7 +137,7 @@ def strategy_set3(): # StepBalanceRatio
     myMT5run.input_set("Inp_Lots_BasicEveryLot", "200000||5000.0||500.000000||50000.000000||N")
     myMT5run.input_set("Inp_Lots_BasicStep", "2000||500||100||2000||Y")
 FwdRprAd.prepare(common_set, strategy_set3)
-FwdRprAd.combine_symbol_opt(symbol="USDJPY", optimization=1, deposit=2000)
+FwdRprAd.combine_symbol_opt(symbol="AUDJPY", optimization=1, deposit=2000, shutdownterminal=1)
 
 #%% ### OccupyMarginPct
 # (***)不同模式不同保存目录(***)
@@ -136,6 +146,6 @@ def strategy_set4(): # StepBalanceRatio
     myMT5run.input_set("Inp_MM_Mode", "7||0||0||8||N") # OccupyMarginPct
     myMT5run.input_set("Inp_Lots_SLRiskPercent", "0.01||0.005||0.001||0.02||Y")
 FwdRprAd.prepare(common_set, strategy_set4)
-FwdRprAd.combine_symbol_opt(symbol="USDJPY", optimization=1, deposit=2000)
+FwdRprAd.combine_symbol_opt(symbol="AUDJPY", optimization=1, deposit=2000, shutdownterminal=1)
 
 
