@@ -73,8 +73,8 @@ FwdRprAd.timeframe = "TIMEFRAME_M15" # 策略的时间框******
 FwdRprAd.bt_starttime = "2016.07.01"  # 手动指定******，一般为推进样本外的起始
 FwdRprAd.bt_endtime = "2023.02.08"  # 手动指定******，一般为最近的时间
 
-FwdRprAd.bt_starttime = "2019.02.01"  # 敏感特殊时间测试！！！
-FwdRprAd.bt_endtime = "2019.06.20"  # 敏感特殊时间测试！！！
+# FwdRprAd.bt_starttime = "2019.02.01"  # 敏感特殊时间测试！！！
+# FwdRprAd.bt_endtime = "2019.06.20"  # 敏感特殊时间测试！！！
 
 # (***)输出目录(***)
 # 输出的总目录******
@@ -82,18 +82,18 @@ FwdRprAd.contentfolder = r"F:\BaiduNetdiskWorkspace\工作---MT5策略研究\8.Z
 # 之前手工建立的目录******
 
 FwdRprAd.bt_folder = FwdRprAd.contentfolder + r"\4.组合.2016-07-01.2023-01-01.IC"
-FwdRprAd.bt_folder = FwdRprAd.contentfolder + r"\4.组合.2016-07-01.2023-01-01.IC\敏感品种敏感时段"
+# FwdRprAd.bt_folder = FwdRprAd.contentfolder + r"\4.组合.2016-07-01.2023-01-01.IC\敏感品种敏感时段"
 
 
 # (***)推进回测EA的目录(后面不能带\\)和文件名(***)
 FwdRprAd.bt_experfolder = "My_Experts\\Strategy深度研究\\5.ZigZag与均线缠绕后突破轨道\\推进交易.2Y6M\\组合"
 # 敏感品种敏感时段测试
-FwdRprAd.bt_experfolder = "My_Experts\\Strategy深度研究\\5.ZigZag与均线缠绕后突破轨道\\推进交易.2Y6M"
+# FwdRprAd.bt_experfolder = "My_Experts\\Strategy深度研究\\5.ZigZag与均线缠绕后突破轨道\\推进交易.2Y6M"
 
 # (***)ex5的名称格式(***)，要修改
 FwdRprAd.bt_expertnameform = "a5.f5.组合.{}.ex5" # 必须是 a5.f5.组合.M15 格式，最后{}对应时间框词缀.
 # 敏感品种敏感时段测试
-FwdRprAd.bt_expertnameform = "a4.f5.AUDJPY.{}.ex5" # 必须是 a5.f5.组合.M15 格式，最后{}对应时间框词缀.
+# FwdRprAd.bt_expertnameform = "a4.f5.AUDJPY.{}.ex5" # 必须是 a5.f5.组合.M15 格式，最后{}对应时间框词缀.
 
 
 # (***)回测的设置(***)，一般只要修改 delays
