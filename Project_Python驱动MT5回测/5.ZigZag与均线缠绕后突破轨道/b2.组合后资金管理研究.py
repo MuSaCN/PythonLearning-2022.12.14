@@ -121,7 +121,7 @@ FwdRprAd.combine_symbol_opt(symbol="AUDJPY", optimization=1, deposit=2000, shutd
 
 #%% ### SplitFormula
 # (***)不同模式不同保存目录(***)
-FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "SplitFormula_扩展"
+FwdRprAd.bt_reportfolder = FwdRprAd.bt_folder + "\\" + "SplitFormula"
 def strategy_set2(): # SplitFormula
     myMT5run.input_set("Inp_MM_Mode", "4||0||0||8||N") # SplitFormula
     myMT5run.input_set("Inp_Lots_IncreDelta", "100||100||50||2000||Y")
