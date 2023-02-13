@@ -77,7 +77,7 @@ FwdParse.contentfolder = r"F:\BaiduNetdiskWorkspace\工作---MT5策略研究\8.Z
 FwdParse.ea_inputparalist = ["Inp_NExtrama", "Inp_OsciAlpha", "Inp_NCrossLimit", "Inp_NBarCount"]
 
 
-# ["EURUSD", "GBPUSD", "AUDUSD", "NZDUSD", "USDJPY", "USDCAD", "USDCHF", "XAUUSD", "XAGUSD", "AUDJPY","CHFJPY","EURAUD","EURCAD", "EURCHF","EURGBP","EURJPY","GBPAUD","GBPCAD","GBPCHF","GBPJPY","NZDJPY"]
+# ["EURUSD", "GBPUSD", "USDCHF", "USDJPY", "USDCAD", "AUDUSD", "AUDNZD", "AUDCAD", "AUDCHF", "AUDJPY", "GBPJPY", "CHFJPY", "EURGBP", "EURAUD", "EURCHF", "EURJPY", "EURNZD", "EURCAD", "GBPCHF", "USDSGD", "CADCHF", "CADJPY", "GBPAUD", "GBPCAD", "GBPNZD", "NZDCAD", "NZDCHF", "NZDJPY", "NZDUSD", "XAUUSD", "XAGUSD"]
 FwdParse.symbol = "XAUUSD" # ******
 FwdParse.timeframe = "TIMEFRAME_M15" # ******
 FwdParse.starttime = "2015.01.01" # 推进分析数据的开始时间******

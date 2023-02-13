@@ -112,7 +112,7 @@ FwdOpt.endtime = "2023.01.01" # ************
 FwdOpt.step_months = 6 # 6, 3 # 推进步长，单位月 # ************
 FwdOpt.length_year = 2 # 2, 1 # 样本总时间包括训练集和测试集 # ************
 
-FwdOpt.symbollist = ["EURUSD", "GBPUSD", "AUDUSD", "NZDUSD", "USDJPY", "USDCAD", "USDCHF", "XAUUSD", "XAGUSD", "AUDJPY","CHFJPY","EURAUD","EURCAD","EURCHF","EURGBP","EURJPY","GBPAUD","GBPCAD","GBPCHF","GBPJPY","NZDJPY"] # *********
+FwdOpt.symbollist = ["EURUSD", "GBPUSD", "USDCHF", "USDJPY", "USDCAD", "AUDUSD", "AUDNZD", "AUDCAD", "AUDCHF", "AUDJPY", "GBPJPY", "CHFJPY", "EURGBP", "EURAUD", "EURCHF", "EURJPY", "EURNZD", "EURCAD", "GBPCHF", "USDSGD", "CADCHF", "CADJPY", "GBPAUD", "GBPCAD", "GBPNZD", "NZDCAD", "NZDCHF", "NZDJPY", "NZDUSD", "XAUUSD", "XAGUSD"] # *********
 # FwdOpt.symbollist = ["EURUSD"]
 
 FwdOpt.timeframe = "TIMEFRAME_M30"  # ************
