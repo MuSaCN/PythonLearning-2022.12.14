@@ -81,8 +81,13 @@ FwdAuto.contentfolder = r"F:\BaiduNetdiskWorkspace\工作---MT5策略研究\6.�
 # (***)根据基础EA源码的Input变量的顺序来整理下面参数名(***)
 FwdAuto.ea_inputparalist = ["Inp_SigMode", "Inp_Ma_Period", "Inp_Ma_Method", "Inp_Applied_Price", "Inp_Deviation","Inp_SLMuiltple", "Inp_Filter0", "Inp_Filter1"]
 
-
-FwdAuto.symbollist = ["EURUSD", "GBPUSD", "USDCHF", "USDJPY", "USDCAD", "AUDUSD", "AUDNZD", "AUDCAD", "AUDCHF", "AUDJPY", "GBPJPY", "CHFJPY", "EURGBP", "EURAUD", "EURCHF", "EURJPY", "EURNZD", "EURCAD", "GBPCHF", "USDSGD", "CADCHF", "CADJPY", "GBPAUD", "GBPCAD", "GBPNZD", "NZDCAD", "NZDCHF", "NZDJPY", "NZDUSD", "XAUUSD", "XAGUSD"] # 策略的品种列表******
+FwdAuto.symbollist = ["EURUSD", "GBPUSD", "USDCHF", "USDJPY", "USDCAD", "AUDUSD", "AUDNZD", "AUDCAD", "AUDCHF", "AUDJPY", "GBPJPY", "CHFJPY", "EURGBP", "EURAUD", "EURCHF", "EURJPY", "EURNZD", "EURCAD", "GBPCHF", "USDSGD", "CADCHF", "CADJPY", "GBPAUD", "GBPCAD", "GBPNZD", "NZDCAD", "NZDCHF", "NZDJPY", "NZDUSD", "XAUUSD", "XAGUSD"] # *********
+symbolalready = ["EURUSD", "GBPUSD", "AUDUSD", "NZDUSD", "USDJPY", "USDCAD", "USDCHF", "XAUUSD", "XAGUSD", "AUDJPY","CHFJPY","EURAUD","EURCAD","EURCHF","EURGBP","EURJPY","GBPAUD","GBPCAD","GBPCHF","GBPJPY","NZDJPY"]
+symbolneed = []
+for symbol in FwdAuto.symbollist:
+    if symbol not in symbolalready:
+        symbolneed.append(symbol)
+FwdAuto.symbollist = symbolneed
 
 FwdAuto.timeframe = "TIMEFRAME_M30" # 策略的时间框******
 
