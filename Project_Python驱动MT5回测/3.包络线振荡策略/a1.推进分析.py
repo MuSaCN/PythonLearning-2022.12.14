@@ -114,10 +114,7 @@ FwdOpt.length_year = 2 # 2, 1 # 样本总时间包括训练集和测试集 # ***
 
 FwdOpt.symbollist = ["EURUSD", "GBPUSD", "USDCHF", "USDJPY", "USDCAD", "AUDUSD", "AUDNZD", "AUDCAD", "AUDCHF", "AUDJPY", "GBPJPY", "CHFJPY", "EURGBP", "EURAUD", "EURCHF", "EURJPY", "EURNZD", "EURCAD", "GBPCHF", "USDSGD", "CADCHF", "CADJPY", "GBPAUD", "GBPCAD", "GBPNZD", "NZDCAD", "NZDCHF", "NZDJPY", "NZDUSD", "XAUUSD", "XAGUSD"] # *********
 symbolalready = ["EURUSD", "GBPUSD", "AUDUSD", "NZDUSD", "USDJPY", "USDCAD", "USDCHF", "XAUUSD", "XAGUSD", "AUDJPY","CHFJPY","EURAUD","EURCAD","EURCHF","EURGBP","EURJPY","GBPAUD","GBPCAD","GBPCHF","GBPJPY","NZDJPY"]
-symbolneed = []
-for symbol in FwdOpt.symbollist:
-    if symbol not in symbolalready:
-        symbolneed.append(symbol)
+symbolneed = ['AUDNZD', 'AUDCAD', 'AUDCHF', 'EURNZD', 'USDSGD', 'CADCHF', 'CADJPY', 'GBPNZD', 'NZDCAD', 'NZDCHF']
 FwdOpt.symbollist = symbolneed
 
 
