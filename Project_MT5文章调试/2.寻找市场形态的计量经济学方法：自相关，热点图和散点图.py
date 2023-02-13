@@ -83,13 +83,17 @@ def seasonal_autocorrelation(symbol, lag=1, hour1=1, hour2=1):
     from pandas.plotting import autocorrelation_plot
     plt.figure(figsize=(10, 5))
     autocorrelation_plot(rates)
+seasonal_autocorrelation("EURUSD", 5, 1, 1)
+plt.show()
 seasonal_autocorrelation("EURUSD", 25, 1, 1)  # （仅剩每天的第一小时）
+plt.show()
 '''这意味着当天的第一小时与lag天之前的第一小时的差值增量紧密相关，依此类推。'''
 '''注意：此处思路有问题'''
 
 # 现在，我们查看相邻时段之间是否存在相关性。
-seasonal_autocorrelation('EURUSD', 50, 1, 2)
-seasonal_autocorrelation("EURUSD", 50, 12, 13)
+seasonal_autocorrelation('EURUSD', 50, 1, 2) # （仅剩每天的第一小时，第二小时）
+plt.show()
+seasonal_autocorrelation("EURUSD", 50, 12, 13) # （仅剩每天的第12小时，第13小时）
 plt.show()
 
 #%%
@@ -164,7 +168,7 @@ hourly_signals_statistics(symbol='EURUSD', lag=25, hour=13, hour2=14, rfilter=0.
 hourly_signals_statistics(symbol='EURUSD', lag=25, hour=13, hour2=14, rfilter=0.03)
 
 #%%
-myDefault.set_backend_default("tkagg")
+# myDefault.set_backend_default("tkagg")
 ### 3D连接图的实际和预测回报
 def hourly_signals_statistics3D(symbol, lag, hour, hour2, rfilter):
     rates = myMT5Pro.getsymboldata(symbol, "TIMEFRAME_H1", [2015, 1, 1], [2020, 1, 1], index_time=False)

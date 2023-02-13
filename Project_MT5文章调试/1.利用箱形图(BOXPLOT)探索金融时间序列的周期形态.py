@@ -80,12 +80,13 @@ Monthly_Returns = returns.groupby([indexyear, indexmonth]).mean()
 Monthly_Returns.boxplot(column='close', by='month', figsize=(15, 8))
 plt.show()
 '''
-我们可以看到，第五个月（五月份）的增幅中位数偏移到零轴下方，且其异常值显见高于零轴。 通常，从十年的统计数据里可以看出，五月份的市场相对于三月份有所下跌。 只有一个年份，五月份市场上涨。 这是一个有趣的思路，很符合交易者的格言“在五月份卖掉，并离开！”。
+我们可以看到，第五个月（五月份）的增幅中位数偏移到零轴下方，且其异常值显见高于零轴。 通常，从十年的统计数据里可以看出，五月份的市场相对于三月份有所下跌。 只有一个年份，五月份市场上涨。这是一个有趣的思路，很符合交易者的格言“在五月份卖掉，并离开！”。
 我们看一下五月份之后的六月份。 相对于五月份，六月份市场几乎总是（排除一年以外）在增长，这种情况每年都在重复。 六月份的波动范围很小，没有异常值（与五月份不同），这表明良好的季节性稳定。
 请注意第 11 个月（十一月份）。 在此期间市场下跌的概率很高。 之后，在十二月份，市场通常会再度上行。 一月份（第一个月）的波动性很高，且相对于十二月份有所下跌。
 所获得的数据可为交易决策提供很有用的基础条件概览。 而且，概率可以集成到交易系统当中。 例如，可以在某些月份执行更多的买卖操作。
 '''
 
+#%%
 # 我们利用相同的 10 年度观察一周中每个单独交易日的价格增幅分布：
 indexweek = returns.index.week.rename('week')
 indexday = returns.index.dayofweek.rename('day')
@@ -111,7 +112,7 @@ for i in range(1,13): # i=1
 #%%
 ### 分析日内形态
 # 在创建交易系统时，通常要考虑日内的分布，例如，除了日线和月线的分布，还要用到小时线数据。 这轻易就可做到。
-rates_original = myMT5Pro.getsymboldata("EURUSD", "TIMEFRAME_M15", [2010,1,1], [2019, 11, 25], index_time=False)
+rates_original = myMT5Pro.getsymboldata("EURUSD", "TIMEFRAME_M15", [2010,1,1], [2020,1,1], index_time=False)
 # leave only 'time' and 'close' columns
 rates = rates_original[["time","close"]]
 # get percent change (price returns)
@@ -129,7 +130,7 @@ plt.show()
 #%%
 ### 按均线（MA）搜索去趋势化形态
 # 正确检测趋势分量非常棘手。 有时，时间序列可能会太平滑。 在这种情况下，交易信号极少。 如果缩短平滑周期，那么高频成交可能无法负担点差和佣金。 我们编辑代码，以便利用移动平均线进行去趋势化：
-rates_original = myMT5Pro.getsymboldata("EURUSD", "TIMEFRAME_M15", [2010,1,1], [2019, 11, 25], index_time=False)
+rates_original = myMT5Pro.getsymboldata("EURUSD", "TIMEFRAME_M15", [2010,1,1], [2020,1,1], index_time=False)
 # leave only 'time' and 'close' columns
 rates = rates_original[["time","close"]]
 rates = rates.set_index('time')
@@ -166,7 +167,7 @@ plt.show()
 
 #%%
 ### 搜索特定月份或一周中某天的周期形态，按均线去趋势化
-rates_original = myMT5Pro.getsymboldata("EURUSD", "TIMEFRAME_M15", [2010,1,1], [2019, 11, 25], index_time=False)
+rates_original = myMT5Pro.getsymboldata("EURUSD", "TIMEFRAME_M15", [2010,1,1], [2020, 1, 1], index_time=False)
 # leave only 'time' and 'close' columns
 rates = rates_original[["time","close"]]
 rates = rates.set_index('time')
